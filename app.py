@@ -6,6 +6,7 @@ To run the application, execute this script.
 """
 from flask import Flask
 from index import Index
+from login import Login
 
 
 app = Flask(__name__)
@@ -15,6 +16,13 @@ app = Flask(__name__)
 app.add_url_rule('/',
                  view_func=Index.as_view('index'),
                  methods=['GET']
+                 )
+
+
+# URL routing for the login page
+app.add_url_rule('/login',
+                 view_func=Login.as_view('login'),
+                 methods=['GET', 'POST']
                  )
 
 

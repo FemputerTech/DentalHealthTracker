@@ -1,5 +1,5 @@
 """
-This module defines the view for handling GET requests to the home page
+This module defines the view for handling GET requests to the landing page
 of the Dental Health Tracker application.
 """
 from flask import render_template
@@ -8,17 +8,17 @@ from flask.views import MethodView
 
 class Index(MethodView):
     """
-    Handles the index (home) page.
+    Handles the index page.
 
     Methods:
     -------
-    get(): Handles GET requests to the index (home) page.
+    get(): Handles GET requests to the index page.
     """
     
     
     def get(self):
         """
-        Renders the index (home) page.
+        Renders the index page.
         
         Returns:
         --------
