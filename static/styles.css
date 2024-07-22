@@ -1,0 +1,13 @@
+.login-section {
+  display: flex;
+  justify-content: center;
+}
+.auth-form-container {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}

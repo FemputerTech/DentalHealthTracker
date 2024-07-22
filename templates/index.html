@@ -1,4 +1,21 @@
 <!-- extend base template -->
 {% extends "base.html" %} {% block content %}
-<h1>Dental Tracker</h1>
+<section class="login-section">
+  <div class="auth-form-container">
+    <h1>Welcome back</h1>
+    <p>Log in to your account below</p>
+    <form class="auth-form" method="POST">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="username" />
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="password"
+      />
+      <button class="login-button" type="submit">Login</button>
+    </form>
+  </div>
+</section>
 {% endblock %}
