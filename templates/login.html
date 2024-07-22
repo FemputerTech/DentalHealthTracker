@@ -1,20 +1,22 @@
 <!-- extend base template -->
 {% extends "base.html" %} {% block content %}
-<section class="login-section">
+<section class="auth-section">
   <div class="auth-form-container">
     <h1>Welcome back</h1>
     <p>Log in to your account below</p>
     <form class="auth-form" method="POST">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" placeholder="username" />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Email" />
+
       <label for="password">Password</label>
       <input
         type="password"
         id="password"
         name="password"
-        placeholder="password"
+        placeholder="Password"
       />
-      <button class="login-button" type="submit">Login</button>
+      <button class="auth-button" type="submit">Login</button>
+      <span>Don't have an account? <a href="/signup">Sign up for Free</a></span>
     </form>
   </div>
 </section>
