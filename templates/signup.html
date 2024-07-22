@@ -1,0 +1,52 @@
+<!-- extend base template -->
+{% extends "base.html" %} {% block content %}
+<section class="auth-section">
+  <div class="auth-form-container">
+    <h1>Sign up</h1>
+    <p>Enter your details below to create an account and get started</p>
+    <form class="auth-form" method="POST">
+      <label for="firstname">First Name</label>
+      <input
+        type="text"
+        id="firstname"
+        name="firstname"
+        placeholder="First name"
+      />
+
+      <label for="lastname">Last Name</label>
+      <input
+        type="text"
+        id="lastname"
+        name="lastname"
+        placeholder="Last name"
+      />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Email" />
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" />
+
+      <label for="tel">Phone Number</label>
+      <input type="tel" id="tel" name="tel" placeholder="888-888-8888" />
+
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Password"
+      />
+
+      <label for="confirm-password">Confirm Password</label>
+      <input
+        type="password"
+        id="confirm-password"
+        name="confirm-password"
+        placeholder="Confirm password"
+      />
+      <button class="auth-button" type="submit">Signup</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
