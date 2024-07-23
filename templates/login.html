@@ -6,7 +6,13 @@
     <p>Log in to your account below</p>
     <form class="auth-form" method="POST">
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Email" />
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Email"
+        required
+      />
 
       <label for="password">Password</label>
       <input
@@ -14,6 +20,7 @@
         id="password"
         name="password"
         placeholder="Password"
+        required
       />
       <button class="auth-button" type="submit">Login</button>
       <span>Don't have an account? <a href="/signup">Sign up for Free</a></span>
