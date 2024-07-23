@@ -5,12 +5,19 @@ The application uses Flask to create a web interface and includes some modules:
 To run the application, execute this script.
 """
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 from index import Index
 from login import Login
 from signup import Signup
 
-
+# Initialize the Flask app
 app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///dhmodel/database.db"
+app.config['SECRET_KEY'] = 'my-secure-secret-key'
+
+
+# Initialize SQLAlchemy
+db = SQLAlchemy(app)
 
 
 # URL routing for the main landing page
