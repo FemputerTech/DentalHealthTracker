@@ -6,7 +6,7 @@ db = SQLAlchemy()
 
 
 class User(db.Model, UserMixin):
-    __tablename = 'users'
+    __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.string(120), unique=True, nullable=False)
