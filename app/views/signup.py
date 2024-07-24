@@ -1,9 +1,12 @@
 """
 This module defines the view for signing up for the Dental Health Tracker application.
 """
-from flask import render_template, request, flash
+from flask import Blueprint, render_template
 from flask.views import MethodView
-from forms import SignupForm
+from app.forms import SignupForm
+
+
+signup_blueprint = Blueprint('signup', __name__)
 
 
 class Signup(MethodView):
@@ -39,3 +42,6 @@ class Signup(MethodView):
             The rendered HTML template for the home page.
         """        
         return render_template('index.html')
+
+
+signup_blueprint.add_url_rule('/signup', view_func=Signup.as_view('signup'))

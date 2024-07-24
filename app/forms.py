@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, DateField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from wtforms.widgets import TelInput
-import dhmodel
+from app.models import User
 
 
 class SignupForm(FlaskForm):
@@ -38,8 +38,7 @@ class SignupForm(FlaskForm):
     submit = SubmitField("Sign Up")
 
     def validate_email(self, email):
-        users = dhmodel.get_user_model()
-        existing_user = users.query.filter_by(email=email.data).first()
+        existing_user = User.query.filter_by(email=email.data).first()
         
         if existing_user:
             raise ValidationError("That email already exists. Please choose a different one.")

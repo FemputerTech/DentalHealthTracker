@@ -2,8 +2,11 @@
 This module defines the view for handling GET requests to the landing page
 of the Dental Health Tracker application.
 """
-from flask import render_template
+from flask import Blueprint, render_template
 from flask.views import MethodView
+
+
+index_blueprint = Blueprint('index', __name__)
 
 
 class Index(MethodView):
@@ -27,3 +30,6 @@ class Index(MethodView):
         """
         print({"details":"It's aliiiiive!!"})
         return render_template('index.html')
+    
+
+index_blueprint.add_url_rule('/', view_func=Index.as_view('index'))

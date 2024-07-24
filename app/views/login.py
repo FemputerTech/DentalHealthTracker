@@ -1,9 +1,12 @@
 """
 This module defines the view for logging into the Dental Health Tracker application.
 """
-from flask import render_template
+from flask import Blueprint, render_template
 from flask.views import MethodView
-from forms import LoginForm
+from app.forms import LoginForm
+
+
+login_blueprint = Blueprint('login', __name__)
 
 
 class Login(MethodView):
@@ -39,3 +42,6 @@ class Login(MethodView):
             The rendered HTML template for the home page.
         """
         return render_template('index.html')
+
+
+login_blueprint.add_url_rule('/login', view_func=Login.as_view('login'))
