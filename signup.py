@@ -1,8 +1,9 @@
 """
 This module defines the view for signing up for the Dental Health Tracker application.
 """
-from flask import render_template
+from flask import render_template, request, flash
 from flask.views import MethodView
+from forms import SignupForm
 
 
 class Signup(MethodView):
@@ -24,7 +25,8 @@ class Signup(MethodView):
         response : str
             The rendered HTML template for the signup page.
         """
-        return render_template('signup.html')
+        form = SignupForm()
+        return render_template('signup.html', form=form)
     
     
     def post(self):
@@ -35,6 +37,5 @@ class Signup(MethodView):
         --------
         response : str
             The rendered HTML template for the home page.
-        """
-        print("logging in...")
+        """        
         return render_template('index.html')
