@@ -8,3 +8,8 @@ views = Blueprint("views", __name__)
 def index():
     print({"details":"It's aliiiiive!!"})
     return render_template("index.html")
+
+
+@views.route("/about", methods=["GET"])
+def about():
+    return render_template("about.html")
