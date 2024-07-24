@@ -1,5 +1,4 @@
-from flask import Blueprint, request, flash, render_template, redirect, url_for
-from website.forms import LoginForm
+from flask import Blueprint, request, render_template, redirect, url_for
 from email_validator import validate_email, EmailNotValidError
 from phonenumbers import parse, NumberParseException, is_valid_number
 from datetime import datetime
@@ -89,5 +88,8 @@ def signup():
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
-    form = LoginForm()
-    return render_template('login.html', form=form)
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+    return render_template('login.html')

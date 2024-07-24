@@ -1,8 +1,6 @@
 flask
 Flask-SQLAlchemy
 flask_login
-flask_wtf
-wtforms
 flask_bcrypt
 email_validator
 phonenumbers
