@@ -3,6 +3,7 @@ This module defines the view for logging into the Dental Health Tracker applicat
 """
 from flask import render_template
 from flask.views import MethodView
+from forms import LoginForm
 
 
 class Login(MethodView):
@@ -24,7 +25,8 @@ class Login(MethodView):
         response : str
             The rendered HTML template for the login page.
         """
-        return render_template('login.html')
+        form = LoginForm()
+        return render_template('login.html', form=form)
     
     
     def post(self):
@@ -36,5 +38,4 @@ class Login(MethodView):
         response : str
             The rendered HTML template for the home page.
         """
-        print("logging in...")
         return render_template('index.html')
