@@ -3,7 +3,7 @@ This module defines the view for signing up for the Dental Health Tracker applic
 """
 from flask import Blueprint, render_template
 from flask.views import MethodView
-from app.forms import SignupForm
+from website.forms import SignupForm
 
 
 signup_blueprint = Blueprint('signup', __name__)

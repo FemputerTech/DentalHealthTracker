@@ -9,9 +9,9 @@ def create_app(config_class='instance.config.Config'):
     db.init_app(app)
     bcrypt.init_app(app)
 
-    from app.views.index import index_blueprint
-    from app.views.login import login_blueprint
-    from app.views.signup import signup_blueprint
+    from website.views.index import index_blueprint
+    from website.views.login import login_blueprint
+    from website.views.signup import signup_blueprint
 
     app.register_blueprint(index_blueprint)
     app.register_blueprint(login_blueprint)

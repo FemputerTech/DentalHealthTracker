@@ -4,7 +4,7 @@ The application uses Flask to create a web interface and includes some modules:
 
 To run the application, execute this script.
 """
-from app import create_app
+from website import create_app
 
 
 app = create_app()
