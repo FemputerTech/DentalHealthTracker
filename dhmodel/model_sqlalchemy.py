@@ -9,5 +9,9 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.string(120), unique=True, nullable=False)
-    password = db.Column(db.string(80), nullable=False)
+    first_name = db.Column(db.String(40), nullable=False)
+    last_name = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    dob = db.Column(db.Date, nullable=False)
+    tel = db.Column(db.Integer, nullable=False)
+    password = db.Column(db.String(80), nullable=False)
