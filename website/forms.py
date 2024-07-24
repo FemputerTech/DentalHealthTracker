@@ -42,6 +42,10 @@ class SignupForm(FlaskForm):
         
         if existing_user:
             raise ValidationError("That email already exists. Please choose a different one.")
+    
+    def validate_confirm_password(self, confirm_password):       
+        if confirm_password.data != self.password.data:
+            raise ValidationError("Passwords must match.")
         
 
 class LoginForm(FlaskForm):
