@@ -13,3 +13,8 @@ def index():
 @views.route("/about", methods=["GET"])
 def about():
     return render_template("about.html")
+
+
+@views.route("/dashboard", methods=["GET", "POST"])
+def dashboard():
+    return render_template("dashboard.html")
