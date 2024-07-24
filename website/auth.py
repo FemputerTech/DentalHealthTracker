@@ -86,7 +86,6 @@ def signup():
     return render_template('signup.html')
 
 
-
 @auth.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -104,3 +103,10 @@ def login():
             print({"Email Login Error":"Email does not exists"})
 
     return render_template('login.html')
+
+
+@auth.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("views.index"))
