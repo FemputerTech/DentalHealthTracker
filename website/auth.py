@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for
 from email_validator import validate_email, EmailNotValidError
 from phonenumbers import parse, NumberParseException, is_valid_number
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 from datetime import datetime
 from .extensions import db, bcrypt
 from .models import User
@@ -83,7 +83,7 @@ def signup():
                 db.session.add(new_user)
                 db.session.commit()
                 return redirect(url_for('auth.login'))
-    return render_template('signup.html')
+    return render_template('signup.html', user=current_user)
 
 
 @auth.route("/login", methods=["GET", "POST"])
@@ -102,7 +102,7 @@ def login():
         else:
             print({"Email Login Error":"Email does not exists"})
 
-    return render_template('login.html')
+    return render_template('login.html', user=current_user)
 
 
 @auth.route("/logout")
