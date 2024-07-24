@@ -1,6 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for
 from email_validator import validate_email, EmailNotValidError
 from phonenumbers import parse, NumberParseException, is_valid_number
+from flask_login import login_user, login_required, logout_user
 from datetime import datetime
 from .extensions import db, bcrypt
 from .models import User
@@ -91,5 +92,15 @@ def login():
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
+
+        user = User.query.filter_by(email=email).first()
+        if user:
+            if bcrypt.check_password_hash(user.password, password):
+                login_user(user, remember=True)
+                return redirect(url_for("views.dashboard"))
+            else:
+                print({"Password Login Error":"Incorrect password"})
+        else:
+            print({"Email Login Error":"Email does not exists"})
 
     return render_template('login.html')
