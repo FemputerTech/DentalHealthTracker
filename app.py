@@ -5,9 +5,15 @@ The application uses Flask to create a web interface and includes some modules:
 To run the application, execute this script.
 """
 from website import create_app
+from website.extensions import db
 
 
 app = create_app()
+
+
+# Create database tables if they don't exist
+with app.app_context():
+    db.create_all()
 
 
 # Run the application
