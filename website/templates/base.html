@@ -10,13 +10,16 @@
     <header>
       <div class="logo">
         <img class="logo-image" src="" alt="logo" />
-        <span class="logo-text">Smile</span>
+        <span class="logo-text">SmileGuide.ai</span>
       </div>
       <nav>
         <ul class="nav-list">
           {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" id="dashboard" href="/dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="about" href="/about">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="login" href="/logout">Logout</a>
@@ -26,12 +29,12 @@
             <a class="nav-link" id="home" href="/">Home</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" id="about" href="/about">About</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" id="login" href="/login">Login</a>
           </li>
           {% endif %}
-          <li class="nav-item">
-            <a class="nav-link" id="about" href="/about">About</a>
-          </li>
         </ul>
       </nav>
     </header>

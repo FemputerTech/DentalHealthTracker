@@ -1,6 +1,27 @@
 <!-- extend base template -->
 {% extends "base.html" %} {% block content %}
 <section class="hero-section">
-  <h1>Dental Tracker</h1>
+  <div class="hero-content">
+    <h1>Smile Smarter With AI</h1>
+    <p>
+      Your personalized path to a healthier smile, guided by advanced AI
+      insights and recommendations.
+    </p>
+    <div class="hero-buttons">
+      <button class="start-button" onclick="window.location.href='/signup'">
+        Get Started
+      </button>
+      <button class="login-button" onclick="window.location.href='/login'">
+        Login
+      </button>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img
+      class="image"
+      src="../static/images/hero.png"
+      alt="Woman smiling brightly"
+    />
+  </div>
 </section>
 {% endblock %}
