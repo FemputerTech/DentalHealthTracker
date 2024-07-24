@@ -17,7 +17,7 @@ class SignupForm(FlaskForm):
     email = StringField(
         validators=[DataRequired(), Email()],
         render_kw={"placeholder": "Email"}
-        )
+    )
     dob = DateField(
         validators=[DataRequired()],
         format='%Y-%m-%d'
@@ -43,3 +43,15 @@ class SignupForm(FlaskForm):
         
         if existing_user:
             raise ValidationError("That email already exists. Please choose a different one.")
+        
+
+class LoginForm(FlaskForm):
+    email = StringField(
+        validators=[DataRequired(), Email()],
+        render_kw={"placeholder": "Email"}
+    )
+    password = PasswordField(
+        "Password", validators=[DataRequired(), Length(min=8, max=20)],
+        render_kw={"placeholder": "Password"}
+    )
+    submit = SubmitField("Login")
