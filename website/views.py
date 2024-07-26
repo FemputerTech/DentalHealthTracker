@@ -24,3 +24,8 @@ def dashboard():
 @views.route("/dashboard/<section>", methods=["GET", "POST"])
 def load_content(section):
     return render_template(f"partials/{section}.html")
+
+
+@views.route("/dashboard/ai-assistant", methods=["GET", "POST"])
+def load_ai_assistant():
+    return render_template("partials/assistant.html")
