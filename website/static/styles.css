@@ -54,6 +54,7 @@ header {
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 20px;
 }
@@ -406,6 +407,20 @@ footer {
   display: none;
   color: #8d979b;
   margin-left: 10px;
+}
+
+.dashboard-content {
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 2px solid lightgray;
+}
+
+.content-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-transform: capitalize;
+  padding: 10px 30px;
 }
 
 @media (min-width: 481px) {
