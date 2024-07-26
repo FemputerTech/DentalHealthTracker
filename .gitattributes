@@ -1,2 +1,3 @@
 # changing the programming language displayed in my github repository
 *.css linguist-detectable=false
+*.html linguist-detectable=false
