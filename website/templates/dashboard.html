@@ -16,19 +16,23 @@
       <div class="nav-top">
         <ul class="nav-list">
           <li class="nav-item">
-            <a class="nav-link" id="dashboard" href="/dashboard">
+            <a
+              class="nav-link"
+              id="dashboard"
+              onclick="loadContent('overview')"
+            >
               <box-icon name="chart" color="#8D979B"></box-icon>
               <div class="nav-label">Dashboard</div>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="calendar" href="/dashboard">
+            <a class="nav-link" id="calendar" onclick="loadContent('calendar')">
               <box-icon name="calendar" color="#8D979B"></box-icon>
               <span class="nav-label">Calendar</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="message" href="/dashboard">
+            <a class="nav-link" id="message" onclick="loadContent('message')">
               <box-icon name="message-rounded-dots" color="#8D979B"></box-icon>
               <span class="nav-label">Message</span>
             </a>

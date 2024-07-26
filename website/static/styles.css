@@ -400,6 +400,7 @@ footer {
 
 .navbar-authenticated .nav-link {
   display: flex;
+  cursor: pointer;
   text-decoration: none;
 }
 
