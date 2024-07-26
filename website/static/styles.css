@@ -440,24 +440,25 @@ footer {
   display: none;
   justify-content: center;
   align-items: center;
-  background-color: aqua;
-  top: 0;
+  padding: 100px;
   width: 100%;
   height: 100vh;
 }
 
-@media (min-width: 481px) {
-  /* .main-dashboard {
-    transition: transform 0.3s ease;
-    transform: translateX(100px);
-    padding-left: 0;
-    width: calc(100% - 100px);
-  }
+.assistant-section {
+  background-color: darkgray;
+  border-radius: 20px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+}
 
-  .main-dashboard.expanded {
-    transition: transform 0.3s ease;
-    transform: translateX(200px);
-    padding-left: 0;
-    width: calc(100% - 200px);
-  } */
+.close-assistant {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 481px) {
 }
