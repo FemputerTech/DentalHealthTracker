@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, jsonify
-from flask.views import MethodView
 import openai
 
 
