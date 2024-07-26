@@ -19,8 +19,10 @@ def create_app(config_class='instance.config.Config'):
 
     from website.views import views
     from website.auth import auth
+    from website.openai import bot
 
     app.register_blueprint(views)
     app.register_blueprint(auth)
+    app.register_blueprint(bot)
 
     return app
