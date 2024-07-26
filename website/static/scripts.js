@@ -53,3 +53,37 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.getItem("currentDashboardSection") || "overview";
   loadContent(savedDashboardSection);
 });
+
+function loadAiAssistant() {
+  const chatView = document.querySelector(".chat-view");
+  const sidebar = document.querySelector(".sidebar");
+  const mainDashboardContent = document.querySelector(".main-content");
+
+  chatView.style.display = "flex";
+
+  // Make the sidebar and main content non-interactive
+  sidebar.style.pointerEvents = "none";
+  mainDashboardContent.style.pointerEvents = "none";
+  sidebar.style.opacity = "0.7";
+  mainDashboardContent.style.opacity = "0.7";
+
+  fetch("/dashboard/ai-assistant")
+    .then((response) => response.text())
+    .then((html) => {
+      chatView.innerHTML = html;
+    })
+    .catch((error) => console.error("Error loading content:", error));
+}
+
+function closeAiAssistant() {
+  const chatView = document.querySelector(".chat-view");
+  const sidebar = document.querySelector(".sidebar");
+  const mainDashboardContent = document.querySelector(".main-content");
+  chatView.style.display = "";
+
+  // Re-enable the sidebar and main content
+  sidebar.style.pointerEvents = "auto";
+  mainDashboardContent.style.pointerEvents = "auto";
+  sidebar.style.opacity = "1";
+  mainDashboardContent.style.opacity = "1";
+}

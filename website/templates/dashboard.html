@@ -26,15 +26,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="calendar" onclick="loadContent('calendar')">
-              <box-icon name="calendar" color="#8D979B"></box-icon>
-              <span class="nav-label">Calendar</span>
+            <a class="nav-link" id="assistant" onclick="loadAiAssistant()">
+              <box-icon name="message-rounded-dots" color="#8D979B"></box-icon>
+              <span class="nav-label">AI Chat Helper</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="message" onclick="loadContent('message')">
-              <box-icon name="message-rounded-dots" color="#8D979B"></box-icon>
-              <span class="nav-label">Message</span>
+            <a class="nav-link" id="calendar" onclick="loadContent('calendar')">
+              <box-icon name="calendar" color="#8D979B"></box-icon>
+              <span class="nav-label">Calendar</span>
             </a>
           </li>
         </ul>
@@ -58,31 +58,36 @@
     </nav>
   </section>
   <div class="main-dashboard">
-    <header>
-      <div class="logo-text">
-        <h1>
-          <span style="color: var(--primary-color); font-weight: 700"
-            >Smile</span
-          >Guide.ai
-        </h1>
-      </div>
-      <a class="nav-link" id="account" href="/dashboard"
-        ><box-icon name="user-circle"></box-icon
-      ></a>
-    </header>
-    <main>
-      <h1>Welcome back, {{user.first_name}}!</h1>
-      <div class="dashboard-labels">
-        {% for label in ["overview", "appointments", "analytics"] %}
-        <button class="content-button" onclick="loadContent('{{ label }}')">
-          <h2>{{ label }}</h2>
-        </button>
-        {% endfor %}
-      </div>
-      <div class="dashboard-content">
-        <!-- dynamic content will go here -->
-      </div>
-    </main>
+    <div class="main-content">
+      <header>
+        <div class="logo-text">
+          <h1>
+            <span style="color: var(--primary-color); font-weight: 700"
+              >Smile</span
+            >Guide.ai
+          </h1>
+        </div>
+        <a class="nav-link" id="account" href="/dashboard"
+          ><box-icon name="user-circle"></box-icon
+        ></a>
+      </header>
+      <main>
+        <h1>Welcome back, {{user.first_name}}!</h1>
+        <div class="dashboard-labels">
+          {% for label in ["overview", "appointments", "analytics"] %}
+          <button class="content-button" onclick="loadContent('{{ label }}')">
+            <h2>{{ label }}</h2>
+          </button>
+          {% endfor %}
+        </div>
+        <div class="dashboard-content">
+          <!-- dynamic content will go here -->
+        </div>
+      </main>
+    </div>
+    <div class="chat-view">
+      <!-- dynamic chat view will go here -->
+    </div>
   </div>
 </div>
 {% endblock %}
