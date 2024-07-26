@@ -454,6 +454,12 @@ footer {
   height: 100%;
 }
 
+.assistant-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 .close-assistant {
   background-color: transparent;
   border: none;
