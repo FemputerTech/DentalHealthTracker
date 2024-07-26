@@ -38,7 +38,7 @@ function toggleSidebar() {
   });
 }
 
-function loadContent(section) {
+async function loadContent(section) {
   fetch(`/dashboard/${section}`)
     .then((response) => response.text())
     .then((html) => {
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadContent(savedDashboardSection);
 });
 
-function loadAiAssistant() {
+async function loadAiAssistant() {
   const chatView = document.querySelector(".chat-view");
   const sidebar = document.querySelector(".sidebar");
   const mainDashboardContent = document.querySelector(".main-content");
@@ -64,8 +64,11 @@ function loadAiAssistant() {
   // Make the sidebar and main content non-interactive
   sidebar.style.pointerEvents = "none";
   mainDashboardContent.style.pointerEvents = "none";
-  sidebar.style.opacity = "0.7";
-  mainDashboardContent.style.opacity = "0.7";
+  sidebar.style.opacity = "0.5";
+  mainDashboardContent.style.opacity = "0.5";
+
+  // Save state to localStorage
+  localStorage.setItem("chatOpen", "true");
 
   fetch("/dashboard/ai-assistant")
     .then((response) => response.text())
@@ -86,4 +89,29 @@ function closeAiAssistant() {
   mainDashboardContent.style.pointerEvents = "auto";
   sidebar.style.opacity = "1";
   mainDashboardContent.style.opacity = "1";
+
+  // Save state to localStorage
+  localStorage.setItem("chatOpen", "false");
+}
+
+async function sendMessage() {
+  const message = document.getElementById("message");
+  const userMessage = document.querySelector(".user-message");
+  userMessage.textContent = `You: ${message.value}`;
+
+  try {
+    const response = await fetch("/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: message.value }),
+    });
+
+    const data = await response.json();
+    const botMessage = document.querySelector(".bot-message");
+    botMessage.textContent = `Bot: ${data.response}`;
+  } catch (error) {
+    console.error("Error sending message:", error);
+  }
 }
