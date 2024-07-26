@@ -7,13 +7,12 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  overflow: hidden;
   margin: 0;
   padding: 0;
 }
 
 :root {
-  --primary-color: #2a71a8;
+  --primary-color: #2aa867;
   --body-color: #ffffff;
   --body-color-alt: #dfe4e7;
   --background-dark: #c0c4c6;
@@ -89,6 +88,11 @@ footer {
 .logo img {
   width: 40px;
   /* height: auto; */
+}
+
+.logo-text h1 {
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .logo-unauthenticated {
@@ -341,6 +345,10 @@ footer {
 }
 
 /* ****************** Dashboard ****************** */
+.dashboard {
+  overflow: hidden;
+}
+
 .sidebar {
   position: fixed;
   display: flex;

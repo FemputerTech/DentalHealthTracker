@@ -11,7 +11,13 @@
     <header>
       <div class="logo logo-unauthenticated">
         <img src="../static/images/icon.png" alt="logo" />
-        <span class="logo-text">SmileGuide.ai</span>
+        <div class="logo-text">
+          <h1>
+            <span style="color: var(--primary-color); font-weight: 700"
+              >Smile</span
+            >Guide.ai
+          </h1>
+        </div>
       </div>
       <nav class="navbar navbar-unauthenticated">
         <div class="navbar-toggle" onclick="toggleNavList()">
@@ -31,7 +37,7 @@
       </nav>
     </header>
     {% endif %} {% block content %}{% endblock %}
-    <!-- <footer></footer> -->
+    <footer></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="../static/scripts.js"></script>
   </body>
