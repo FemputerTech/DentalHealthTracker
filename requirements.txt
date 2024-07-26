@@ -4,3 +4,4 @@ flask_login
 flask_bcrypt
 email_validator
 phonenumbers
+openai==0.28
