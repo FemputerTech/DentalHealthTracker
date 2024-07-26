@@ -15,15 +15,19 @@ function toggleSidebar() {
   const sidebar = document.querySelector(".sidebar");
   const dashboard = document.querySelector(".main-dashboard");
 
-  if (boxIcon.getAttribute("name") === "chevrons-right") {
-    boxIcon.setAttribute("name", "chevrons-left");
-    sidebar.classList.add("expanded");
-    dashboard.classList.add("expanded");
-  } else {
+  let isExpanded = boxIcon.getAttribute("name") === "chevrons-left";
+
+  if (isExpanded) {
     boxIcon.setAttribute("name", "chevrons-right");
     sidebar.classList.remove("expanded");
     dashboard.classList.remove("expanded");
+  } else {
+    boxIcon.setAttribute("name", "chevrons-left");
+    sidebar.classList.add("expanded");
+    dashboard.classList.add("expanded");
   }
+
+  localStorage.setItem("sidebarExpanded", !isExpanded);
 
   navLabels.forEach((navLabel) => {
     if (navLabel.style.display === "") {
