@@ -41,12 +41,27 @@ header {
 }
 
 .header-authenticated {
-  left: 60px;
+  transition: transform 0.3s ease;
+  transform: translateX(60px);
+}
+
+.header-authenticated.expanded {
+  transform: translateX(150px);
 }
 
 footer {
   background-color: var(--background-dark);
   height: 100px;
+}
+
+@media (min-width: 481px) {
+  .header-authenticated {
+    transform: translateX(100px);
+  }
+
+  .header-authenticated.expanded {
+    transform: translateX(200px);
+  }
 }
 
 /* ****************** Navbar ****************** */
@@ -305,12 +320,26 @@ footer {
 
 /* ****************** Dashboard ****************** */
 .sidebar {
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #091722;
+  transition: width 0.3s ease;
   width: 60px;
   height: 100vh;
+}
+
+.sidebar.expanded {
+  width: 150px;
+}
+
+.sidebar-toggle {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  padding: 10px 10px 0 0;
+  width: 100%;
 }
 
 .logo-authenticated {
@@ -333,13 +362,24 @@ footer {
   margin-top: 20px;
 }
 
-@media (min-width: 481px) {
-  .header-authenticated {
-    left: 100px;
-  }
+.navbar-authenticated .nav-link {
+  display: flex;
+  text-decoration: none;
+}
 
+.navbar-authenticated .nav-label {
+  display: none;
+  color: #8d979b;
+  margin-left: 10px;
+}
+
+@media (min-width: 481px) {
   .sidebar {
     width: 100px;
+  }
+
+  .sidebar.expanded {
+    width: 200px;
   }
 
   .logo-authenticated {
