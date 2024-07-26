@@ -1,7 +1,51 @@
 <!-- extend base template -->
 {% extends "base.html" %} {% block content %}
 <main>
-  <h1>Hello, {{user.first_name}}</h1>
-  <a class="nav-link" id="login" href="/logout">Logout</a>
+  <section class="sidebar">
+    <div class="logo logo-authenticated">
+      <img src="../static/images/icon.png" alt="logo" />
+    </div>
+    <nav class="navbar navbar-authenticated">
+      <!-- <div class="navbar-toggle" onclick="toggleSidebar()">
+        <box-icon name="sidebar"></box-icon>
+      </div> -->
+      <div class="nav-top">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="nav-link" id="dashboard" href="/dashboard">
+              <box-icon name="chart" color="#8D979B"></box-icon>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="calendar" href="/dashboard"
+              ><box-icon name="calendar" color="#8D979B"></box-icon
+            ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="message" href="/dashboard"
+              ><box-icon name="message-rounded-dots" color="#8D979B"></box-icon
+            ></a>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-bottom">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="nav-link" id="logout" href="/logout"
+              ><box-icon name="cog" color="#8D979B"></box-icon
+            ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="logout" href="/logout"
+              ><box-icon name="log-out" color="#8D979B"></box-icon
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </section>
+  <div>
+    <h1>Hello, {{user.first_name}}</h1>
+  </div>
 </main>
 {% endblock %}
