@@ -33,3 +33,19 @@ function toggleSidebar() {
     }
   });
 }
+
+function loadContent(section) {
+  fetch(`/dashboard/${section}`)
+    .then((response) => response.text())
+    .then((html) => {
+      document.querySelector(".dashboard-content").innerHTML = html;
+      localStorage.setItem("currentDashboardSection", section);
+    })
+    .catch((error) => console.error("Error loading content:", error));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const savedDashboardSection =
+    localStorage.getItem("currentDashboardSection") || "overview";
+  loadContent(savedDashboardSection);
+});

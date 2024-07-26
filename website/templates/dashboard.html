@@ -68,14 +68,15 @@
     </header>
     <main>
       <h1>Welcome back, {{user.first_name}}!</h1>
-      <div class="dashboard-content">
-        {% for label in ["overview", "appointments", "Analytics"] %}
-        <form method="GET" action="{{ url_for('views.dashboard') }}">
-          <button class="content-button" type="submit" value="{{ label }}">
-            <h2>{{ label }}</h2>
-          </button>
-        </form>
+      <div class="dashboard-labels">
+        {% for label in ["overview", "appointments", "analytics"] %}
+        <button class="content-button" onclick="loadContent('{{ label }}')">
+          <h2>{{ label }}</h2>
+        </button>
         {% endfor %}
+      </div>
+      <div class="dashboard-content">
+        <!-- dynamic content will go here -->
       </div>
     </main>
   </div>

@@ -409,7 +409,7 @@ footer {
   margin-left: 10px;
 }
 
-.dashboard-content {
+.dashboard-labels {
   display: flex;
   justify-content: flex-end;
   border-bottom: 2px solid lightgray;
