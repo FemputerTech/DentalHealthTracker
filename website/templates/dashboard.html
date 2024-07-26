@@ -67,7 +67,16 @@
       ></a>
     </header>
     <main>
-      <h1>Welcome back {{user.first_name}}!</h1>
+      <h1>Welcome back, {{user.first_name}}!</h1>
+      <div class="dashboard-content">
+        {% for label in ["overview", "appointments", "Analytics"] %}
+        <form method="GET" action="{{ url_for('views.dashboard') }}">
+          <button class="content-button" type="submit" value="{{ label }}">
+            <h2>{{ label }}</h2>
+          </button>
+        </form>
+        {% endfor %}
+      </div>
     </main>
   </div>
 </div>
