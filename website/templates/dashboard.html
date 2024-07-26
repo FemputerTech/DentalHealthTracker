@@ -52,7 +52,13 @@
     </div>
   </nav>
 </section>
-<main>
-  <h1>Hello, {{user.first_name}}</h1>
-</main>
+<div class="main-dashboard">
+  <header>
+    <span class="logo-text logo-text-authenticated">SmileGuide.ai</span>
+    <span class="account">Acount</span>
+  </header>
+  <main>
+    <h1>Welcome back {{user.first_name}}!</h1>
+  </main>
+</div>
 {% endblock %}

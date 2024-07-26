@@ -7,11 +7,7 @@
     <link rel="stylesheet" href="../static/styles.css" />
   </head>
   <body>
-    {% if user.is_authenticated %}
-    <header class="header-authenticated">
-      <div class="dashboard-title">Title</div>
-    </header>
-    {% else %}
+    {% if not user.is_authenticated %}
     <header>
       <div class="logo logo-unauthenticated">
         <img src="../static/images/icon.png" alt="logo" />
@@ -35,7 +31,7 @@
       </nav>
     </header>
     {% endif %} {% block content %}{% endblock %}
-    <footer></footer>
+    <!-- <footer></footer> -->
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="../static/scripts.js"></script>
   </body>

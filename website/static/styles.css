@@ -7,6 +7,7 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  overflow: hidden;
   margin: 0;
   padding: 0;
 }
@@ -40,13 +41,22 @@ header {
   left: 0;
 }
 
-.header-authenticated {
-  transition: transform 0.3s ease;
-  transform: translateX(60px);
+.main-dashboard {
+  display: flex;
+  flex-direction: column;
+  padding-left: 60px;
+  width: 100%;
+  height: 100vh;
 }
 
-.header-authenticated.expanded {
-  transform: translateX(150px);
+.main-dashboard header {
+  position: static;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
 footer {
@@ -55,18 +65,30 @@ footer {
 }
 
 @media (min-width: 481px) {
-  .header-authenticated {
+  .main-dashboard {
+    transition: transform 0.3s ease;
     transform: translateX(100px);
+    padding-left: 0;
+    width: calc(100% - 100px);
   }
 
-  .header-authenticated.expanded {
+  .main-dashboard.expanded {
+    transition: transform 0.3s ease;
     transform: translateX(200px);
+    padding-left: 0;
+    width: calc(100% - 200px);
+  }
+
+  main {
+    justify-content: flex-start;
+    padding: 10px 30px;
   }
 }
 
 /* ****************** Navbar ****************** */
 .logo img {
   width: 40px;
+  /* height: auto; */
 }
 
 .logo-unauthenticated {
@@ -328,6 +350,8 @@ footer {
   transition: width 0.3s ease;
   width: 60px;
   height: 100vh;
+  top: 0;
+  left: 0;
 }
 
 .sidebar.expanded {
@@ -338,20 +362,23 @@ footer {
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
-  padding: 10px 10px 0 0;
+  padding: 10px;
   width: 100%;
 }
 
 .logo-authenticated {
-  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .navbar-authenticated {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 40px 0;
-  height: 100%;
+  flex: 1;
+  margin-bottom: 40px;
 }
 
 .navbar-authenticated .nav-list {
@@ -380,13 +407,5 @@ footer {
 
   .sidebar.expanded {
     width: 200px;
-  }
-
-  .logo-authenticated {
-    margin: 40px;
-  }
-
-  .navbar-authenticated {
-    margin: 40px;
   }
 }
