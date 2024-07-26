@@ -13,6 +13,9 @@
         <span class="logo-text">SmileGuide.ai</span>
       </div>
       <nav>
+        <div class="navbar-toggle" onclick="toggleNavList()">
+          <box-icon name="menu"></box-icon>
+        </div>
         <ul class="nav-list">
           {% if user.is_authenticated %}
           <li class="nav-item">
@@ -38,7 +41,7 @@
         </ul>
       </nav>
     </header>
-    <main>{% block content %}{% endblock %}</main>
+    {% block content %}{% endblock %}
     <footer></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="../static/scripts.js"></script>
