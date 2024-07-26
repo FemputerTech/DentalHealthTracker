@@ -19,3 +19,8 @@ def about():
 @views.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
     return render_template("dashboard.html", user=current_user)
+
+
+@views.route("/dashboard/<section>", methods=["GET", "POST"])
+def load_content(section):
+    return render_template(f"partials/{section}.html")
