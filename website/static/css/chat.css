@@ -1,15 +1,4 @@
 /* ****************** Chat View ****************** */
-.chat-view {
-  position: absolute;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  padding: 100px;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-}
-
 .assistant-section {
   background-color: darkgray;
   border-radius: 20px;
