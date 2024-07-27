@@ -5,13 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Smile</title>
     <link rel="stylesheet" href="../static/css/app.css" />
+    <link rel="stylesheet" href="../static/css/sidebar.css" />
     <link rel="stylesheet" href="../static/css/navbar.css" />
     {% block css %}{% endblock %}
   </head>
   <body>
-    {% if not user.is_authenticated %}
+    {% if user.is_authenticated %}
+    <section class="sidebar">
+      <div class="sidebar-toggle" onclick="toggleSidebar()">
+        <box-icon
+          name="chevrons-right"
+          color="#8D979B"
+          animation="burst-hover"
+        ></box-icon>
+      </div>
+      <div class="logo">
+        <img src="../static/images/icon.png" alt="logo" />
+      </div>
+      <nav>
+        <div class="nav-top">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="dashboard"
+                onclick="loadContent('overview')"
+              >
+                <box-icon name="chart" color="#8D979B"></box-icon>
+                <div class="nav-label">Dashboard</div>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="assistant" onclick="loadAiAssistant()">
+                <box-icon
+                  name="message-rounded-dots"
+                  color="#8D979B"
+                ></box-icon>
+                <span class="nav-label">AI Chat Helper</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="calendar"
+                onclick="loadContent('calendar')"
+              >
+                <box-icon name="calendar" color="#8D979B"></box-icon>
+                <span class="nav-label">Calendar</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="nav-bottom">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a class="nav-link" id="settings" href="/dashboard">
+                <box-icon name="cog" color="#8D979B"></box-icon>
+                <span class="nav-label">Settings</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="logout" href="/logout">
+                <box-icon name="log-out" color="#8D979B"></box-icon>
+                <span class="nav-label">Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    {% else %}
     <header>
-      <div class="logo logo-unauthenticated">
+      <div class="logo">
         <img src="../static/images/icon.png" alt="logo" />
         <div class="logo-text">
           <h1>
@@ -21,7 +86,7 @@
           </h1>
         </div>
       </div>
-      <nav class="navbar navbar-unauthenticated">
+      <nav class="navbar">
         <div class="navbar-toggle" onclick="toggleNavList()">
           <box-icon name="menu"></box-icon>
         </div>
