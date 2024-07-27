@@ -74,6 +74,7 @@ async function loadAiAssistant() {
     .then((response) => response.text())
     .then((html) => {
       chatView.innerHTML = html;
+      fetchMessages();
     })
     .catch((error) => console.error("Error loading content:", error));
 }
@@ -92,6 +93,37 @@ function closeAiAssistant() {
 
   // Save state to localStorage
   localStorage.setItem("chatOpen", "false");
+}
+
+async function fetchMessages() {
+  const messageDisplay = document.querySelector(".message-display");
+  messageDisplay.innerHTML = "";
+
+  try {
+    const response = await fetch("/chat", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    const messages = data.messages;
+
+    messages.forEach((message) => {
+      const messageDiv = document.createElement("div");
+      messageDiv.classList.add(
+        message.role === "user" ? "user-message" : "bot-message"
+      );
+      messageDiv.textContent =
+        message.role === "user"
+          ? `You: ${message.content}`
+          : `Bot: ${message.content}`;
+      messageDisplay.appendChild(messageDiv);
+    });
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+  }
 }
 
 async function sendMessage() {
