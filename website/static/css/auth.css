@@ -1,0 +1,28 @@
+/* ****************** Authentication ****************** */
+.auth-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+  padding: 20px;
+  width: 100%;
+  height: calc(100vh - 80px);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 481px) {
+  .auth-section {
+    align-items: center;
+    margin-top: 80px;
+    padding: 20px;
+  }
+
+  .auth-form-container {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 40px;
+  }
+}

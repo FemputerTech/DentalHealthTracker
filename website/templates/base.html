@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Smile</title>
-    <link rel="stylesheet" href="../static/styles.css" />
+    <link rel="stylesheet" href="../static/css/app.css" />
+    <link rel="stylesheet" href="../static/css/navbar.css" />
+    {% block css %}{% endblock %}
   </head>
   <body>
     {% if not user.is_authenticated %}
@@ -39,6 +41,6 @@
     {% endif %} {% block content %}{% endblock %}
     <footer></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script src="../static/scripts.js"></script>
+    <script src="../static/js/scripts.js"></script>
   </body>
 </html>
