@@ -15,7 +15,7 @@
       ><box-icon name="user-circle"></box-icon
     ></a>
   </div>
-  <section class="dashboard">
+  <div class="dashboard">
     <h1>Welcome back, {{user.first_name}}!</h1>
     <div class="dashboard-labels">
       {% for label in ["overview", "appointments", "analytics"] %}
@@ -24,10 +24,10 @@
       </button>
       {% endfor %}
     </div>
-    <div class="dashboard-content">
+    <section class="dashboard-content">
       <!-- dynamic content will go here -->
-    </div>
-  </section>
+    </section>
+  </div>
 </main>
 <div class="chat-view">
   <!-- dynamic chat view will go here -->

@@ -26,6 +26,7 @@ body {
   background-color: var(--body-color);
   color: var(--text-normal);
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 header {
