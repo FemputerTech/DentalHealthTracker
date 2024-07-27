@@ -55,16 +55,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function isInteractive(opacity, pointerEvents) {
+  const sidebar = document.querySelector(".sidebar");
+  const mainDashboardContent = document.querySelector(".main-content");
+
   sidebar.style.pointerEvents = pointerEvents;
-  mainDashboardContent.style.pointerEvents = pointerEventss;
+  mainDashboardContent.style.pointerEvents = pointerEvents;
   sidebar.style.opacity = opacity;
   mainDashboardContent.style.opacity = opacity;
 }
 
 async function loadAiAssistant() {
   const chatView = document.querySelector(".chat-view");
-  const sidebar = document.querySelector(".sidebar");
-  const mainDashboardContent = document.querySelector(".main-content");
 
   chatView.style.display = "flex";
 
@@ -85,8 +86,6 @@ async function loadAiAssistant() {
 
 function closeAiAssistant() {
   const chatView = document.querySelector(".chat-view");
-  const sidebar = document.querySelector(".sidebar");
-  const mainDashboardContent = document.querySelector(".main-content");
   chatView.style.display = "";
 
   // Re-enable the sidebar and main content
