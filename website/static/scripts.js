@@ -54,6 +54,13 @@ document.addEventListener("DOMContentLoaded", () => {
   loadContent(savedDashboardSection);
 });
 
+function isInteractive(opacity, pointerEvents) {
+  sidebar.style.pointerEvents = pointerEvents;
+  mainDashboardContent.style.pointerEvents = pointerEventss;
+  sidebar.style.opacity = opacity;
+  mainDashboardContent.style.opacity = opacity;
+}
+
 async function loadAiAssistant() {
   const chatView = document.querySelector(".chat-view");
   const sidebar = document.querySelector(".sidebar");
@@ -62,10 +69,7 @@ async function loadAiAssistant() {
   chatView.style.display = "flex";
 
   // Make the sidebar and main content non-interactive
-  sidebar.style.pointerEvents = "none";
-  mainDashboardContent.style.pointerEvents = "none";
-  sidebar.style.opacity = "0.5";
-  mainDashboardContent.style.opacity = "0.5";
+  isInteractive("0.5", "none");
 
   // Save state to localStorage
   localStorage.setItem("chatOpen", "true");
@@ -86,19 +90,32 @@ function closeAiAssistant() {
   chatView.style.display = "";
 
   // Re-enable the sidebar and main content
-  sidebar.style.pointerEvents = "auto";
-  mainDashboardContent.style.pointerEvents = "auto";
-  sidebar.style.opacity = "1";
-  mainDashboardContent.style.opacity = "1";
+  isInteractive("1", "auto");
 
   // Save state to localStorage
   localStorage.setItem("chatOpen", "false");
 }
 
-async function fetchMessages() {
+function appendMessages(messages) {
   const messageDisplay = document.querySelector(".message-display");
   messageDisplay.innerHTML = "";
 
+  messages.forEach((message) => {
+    if (message.role === "user") {
+      const userMessage = document.createElement("div");
+      userMessage.classList.add("user-message");
+      userMessage.textContent = `You: ${message.content}`;
+      messageDisplay.appendChild(userMessage);
+    } else {
+      const botMessage = document.createElement("div");
+      botMessage.classList.add("bot-message");
+      botMessage.textContent = `Bot: ${message.content}`;
+      messageDisplay.appendChild(botMessage);
+    }
+  });
+}
+
+async function fetchMessages() {
   try {
     const response = await fetch("/chat", {
       method: "GET",
@@ -106,37 +123,18 @@ async function fetchMessages() {
         "Content-Type": "application/json",
       },
     });
-
     const data = await response.json();
     const messages = data.messages;
-
-    messages.forEach((message) => {
-      console.log("message:", message.role);
-      if (message.role === "user") {
-        const userMessage = document.createElement("div");
-        userMessage.classList.add("user-message");
-        userMessage.textContent = `You: ${message.content}`;
-        messageDisplay.appendChild(userMessage);
-      } else {
-        const botMessage = document.createElement("div");
-        botMessage.classList.add("bot-message");
-        botMessage.textContent = `Bot: ${message.content}`;
-        messageDisplay.appendChild(botMessage);
-      }
-    });
+    appendMessages(messages);
   } catch (error) {
     console.error("Error fetching messages:", error);
   }
 }
 
 async function sendMessage() {
-  const messageInput = document.getElementById("message");
-  const messageDisplay = document.querySelector(".message-display");
-  const userMessage = document.createElement("div");
-  userMessage.classList.add("user-message");
-  userMessage.textContent = `You: ${messageInput.value}`;
-  messageDisplay.appendChild(userMessage);
-
+  let messages = [];
+  const userMessage = document.getElementById("message");
+  messages.append({ content: userMessage.value, role: "user" });
   try {
     const response = await fetch("/chat", {
       method: "POST",
@@ -145,12 +143,9 @@ async function sendMessage() {
       },
       body: JSON.stringify({ message: messageInput.value }),
     });
-
     const data = await response.json();
-    const botMessage = document.createElement("div");
-    botMessage.classList.add("bot-message");
-    botMessage.textContent = `Bot: ${data.response}`;
-    messageDisplay.appendChild(botMessage);
+    messages.append({ content: data.response, role: "bot" });
+    appendMessages(messages);
   } catch (error) {
     console.error("Error sending message:", error);
   } finally {
