@@ -12,7 +12,7 @@
   <body>
     {% if user.is_authenticated %}
     <section class="sidebar">
-      <div class="sidebar-toggle" onclick="toggleSidebar()">
+      <div class="sidebar-toggle">
         <box-icon
           name="chevrons-right"
           color="#8D979B"
@@ -27,16 +27,16 @@
           <ul class="nav-list">
             <li class="nav-item">
               <a
-                class="nav-link"
+                class="nav-link content"
                 id="dashboard"
-                onclick="loadContent('overview')"
+                data-section="overview"
               >
                 <box-icon name="chart" color="#8D979B"></box-icon>
                 <div class="nav-label">Dashboard</div>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="assistant" onclick="loadAiAssistant()">
+              <a class="nav-link view" id="assistant" data-section="assistant">
                 <box-icon
                   name="message-rounded-dots"
                   color="#8D979B"
@@ -45,11 +45,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link"
-                id="calendar"
-                onclick="loadContent('calendar')"
-              >
+              <a class="nav-link content" id="calendar" data-section="calendar">
                 <box-icon name="calendar" color="#8D979B"></box-icon>
                 <span class="nav-label">Calendar</span>
               </a>
@@ -59,7 +55,7 @@
         <div class="nav-bottom">
           <ul class="nav-list">
             <li class="nav-item">
-              <a class="nav-link" id="settings" href="/dashboard">
+              <a class="nav-link view" id="settings" data-section="assistant">
                 <box-icon name="cog" color="#8D979B"></box-icon>
                 <span class="nav-label">Settings</span>
               </a>
@@ -107,5 +103,8 @@
     <footer></footer>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="../static/js/scripts.js"></script>
+    <script src="../static/js/sidebar.js"></script>
+    <script src="../static/js/content-loader.js"></script>
+    <script src="../static/js/view-loader.js"></script>
   </body>
 </html>
