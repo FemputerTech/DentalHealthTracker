@@ -66,15 +66,11 @@ function isInteractive(opacity, pointerEvents) {
 
 async function loadAiAssistant() {
   const chatView = document.querySelector(".chat-view");
-
   chatView.style.display = "flex";
-
   // Make the sidebar and main content non-interactive
   isInteractive("0.5", "none");
-
   // Save state to localStorage
   localStorage.setItem("chatOpen", "true");
-
   fetch("/dashboard/ai-assistant")
     .then((response) => response.text())
     .then((html) => {
@@ -87,18 +83,14 @@ async function loadAiAssistant() {
 function closeAiAssistant() {
   const chatView = document.querySelector(".chat-view");
   chatView.style.display = "";
-
   // Re-enable the sidebar and main content
   isInteractive("1", "auto");
-
   // Save state to localStorage
   localStorage.setItem("chatOpen", "false");
 }
 
 function appendMessages(messages) {
   const messageDisplay = document.querySelector(".message-display");
-  messageDisplay.innerHTML = "";
-
   messages.forEach((message) => {
     if (message.role === "user") {
       const userMessage = document.createElement("div");
@@ -115,6 +107,8 @@ function appendMessages(messages) {
 }
 
 async function fetchMessages() {
+  const messageDisplay = document.querySelector(".message-display");
+  messageDisplay.innerHTML = "";
   try {
     const response = await fetch("/chat", {
       method: "GET",
@@ -133,21 +127,21 @@ async function fetchMessages() {
 async function sendMessage() {
   let messages = [];
   const userMessage = document.getElementById("message");
-  messages.append({ content: userMessage.value, role: "user" });
+  messages.push({ content: userMessage.value, role: "user" });
   try {
     const response = await fetch("/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ message: messageInput.value }),
+      body: JSON.stringify({ message: userMessage.value }),
     });
     const data = await response.json();
-    messages.append({ content: data.response, role: "bot" });
+    messages.push({ content: data.response, role: "bot" });
     appendMessages(messages);
   } catch (error) {
     console.error("Error sending message:", error);
   } finally {
-    messageInput.value = "";
+    userMessage.value = "";
   }
 }
