@@ -111,15 +111,18 @@ async function fetchMessages() {
     const messages = data.messages;
 
     messages.forEach((message) => {
-      const messageDiv = document.createElement("div");
-      messageDiv.classList.add(
-        message.role === "user" ? "user-message" : "bot-message"
-      );
-      messageDiv.textContent =
-        message.role === "user"
-          ? `You: ${message.content}`
-          : `Bot: ${message.content}`;
-      messageDisplay.appendChild(messageDiv);
+      console.log("message:", message.role);
+      if (message.role === "user") {
+        const userMessage = document.createElement("div");
+        userMessage.classList.add("user-message");
+        userMessage.textContent = `You: ${message.content}`;
+        messageDisplay.appendChild(userMessage);
+      } else {
+        const botMessage = document.createElement("div");
+        botMessage.classList.add("bot-message");
+        botMessage.textContent = `Bot: ${message.content}`;
+        messageDisplay.appendChild(botMessage);
+      }
     });
   } catch (error) {
     console.error("Error fetching messages:", error);
