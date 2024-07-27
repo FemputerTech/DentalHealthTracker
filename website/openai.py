@@ -1,11 +1,13 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, request, jsonify
+from flask_login import login_required
 import openai
 
 
 bot = Blueprint("bot", __name__)
 
 
-@bot.route("/chat", methods=["POST"])
+@bot.route("/chat", methods=["GET", "POST"])
+@login_required
 def chat():
     message = request.json.get('message')
 

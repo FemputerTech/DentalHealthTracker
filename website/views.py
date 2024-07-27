@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 
 views = Blueprint("views", __name__)
@@ -17,15 +17,18 @@ def about():
 
 
 @views.route("/dashboard", methods=["GET", "POST"])
+@login_required
 def dashboard():
     return render_template("dashboard.html", user=current_user)
 
 
 @views.route("/dashboard/<section>", methods=["GET", "POST"])
+@login_required
 def load_content(section):
     return render_template(f"partials/{section}.html")
 
 
 @views.route("/dashboard/ai-assistant", methods=["GET", "POST"])
+@login_required
 def load_ai_assistant():
-    return render_template("partials/assistant.html")
+    return render_template("partials/assistant.html", user=current_user)
