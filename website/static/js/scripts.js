@@ -13,7 +13,7 @@ function toggleSidebar() {
   const boxIcon = sidebarToggle.querySelector("box-icon");
   const navLabels = document.querySelectorAll(".nav-label");
   const sidebar = document.querySelector(".sidebar");
-  const dashboard = document.querySelector(".main-dashboard");
+  const dashboard = document.querySelector("main");
 
   let isExpanded = boxIcon.getAttribute("name") === "chevrons-left";
 
@@ -56,12 +56,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function isInteractive(opacity, pointerEvents) {
   const sidebar = document.querySelector(".sidebar");
-  const mainDashboardContent = document.querySelector(".main-content");
+  const dashboard = document.querySelector("main");
 
   sidebar.style.pointerEvents = pointerEvents;
-  mainDashboardContent.style.pointerEvents = pointerEvents;
+  dashboard.style.pointerEvents = pointerEvents;
   sidebar.style.opacity = opacity;
-  mainDashboardContent.style.opacity = opacity;
+  dashboard.style.opacity = opacity;
 }
 
 async function loadAiAssistant() {
