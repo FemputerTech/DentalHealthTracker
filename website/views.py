@@ -28,7 +28,7 @@ def load_content(section):
     return render_template(f"partials/{section}.html")
 
 
-@views.route("/dashboard/ai-assistant", methods=["GET", "POST"])
+@views.route("/dashboard/view/<view>", methods=["GET", "POST"])
 @login_required
-def load_ai_assistant():
-    return render_template("partials/assistant.html", user=current_user)
+def load_view(view):
+    return render_template(f"partials/{view}.html", user=current_user)
