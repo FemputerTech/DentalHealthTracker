@@ -1,41 +1,31 @@
 /* ****************** Navbar ****************** */
-.logo img {
-  width: 40px;
-  /* height: auto; */
-}
-
-.logo-text h1 {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.logo-unauthenticated {
+header .logo {
   display: flex;
   justify-content: space-between;
   align-self: stretch;
 }
 
-.logo-unauthenticated img {
+header .logo img {
   width: 18px;
   margin-right: 6px;
 }
 
-.logo-unauthenticated .logo-text {
+header .logo .logo-text {
   font-size: 22px;
   font-weight: 700;
 }
 
-.navbar-unauthenticated .navbar-toggle {
+header nav .navbar-toggle {
   display: flex;
   justify-content: flex-end;
   height: 24px;
 }
 
-.navbar-unauthenticated .navbar-toggle:hover {
+header nav .navbar-toggle:hover {
   cursor: pointer;
 }
 
-.navbar-unauthenticated .nav-list {
+header nav .nav-list {
   display: none;
   flex-direction: column;
   align-items: flex-end;
@@ -43,52 +33,52 @@
   list-style-type: none;
 }
 
-.navbar-unauthenticated .nav-item {
+header nav .nav-item {
   margin-top: 10px;
 }
 
-.navbar-unauthenticated .nav-link {
+header nav .nav-link {
   color: var(--text-normal);
   cursor: pointer;
   text-decoration: none;
   text-transform: capitalize;
 }
 
-.navbar-unauthenticated .nav-link.active,
-.navbar-unauthenticated .nav-link:hover {
+header nav.nav-link.active,
+header nav .nav-link:hover {
   color: var(--primary-color);
   font-weight: 500;
 }
 
 @media (min-width: 481px) {
-  .logo-unauthenticated {
+  header .logo {
     align-items: center;
   }
 
-  .navbar-unauthenticated .navbar-toggle {
+  header nav .navbar-toggle {
     display: none;
   }
 
-  .navbar-unauthenticated {
+  header nav {
     display: flex;
     align-items: center;
     align-self: stretch;
   }
 
-  .navbar-unauthenticated .nav-list {
+  header nav .nav-list {
     display: flex;
     flex-direction: row;
     align-items: center;
   }
 
-  .navbar-unauthenticated .nav-item {
+  header nav .nav-item {
     display: flex;
     align-items: center;
     align-self: stretch;
     margin-left: 20px;
   }
 
-  .navbar-unauthenticated .nav-link {
+  header nav .nav-link {
     display: flex;
     align-items: center;
     align-self: stretch;
@@ -100,8 +90,8 @@
     text-transform: capitalize;
   }
 
-  .navbar-unauthenticated .nav-link.active,
-  .navbar-unauthenticated .nav-link:hover {
+  header nav .nav-link.active,
+  header nav .nav-link:hover {
     color: var(--primary-color);
     border-radius: 50px;
     font-weight: 700;
@@ -109,7 +99,7 @@
 }
 
 @media (min-width: 769px) {
-  .navbar-unauthenticated .nav-link {
+  header nav .nav-link {
     padding: 0 10px;
   }
 }

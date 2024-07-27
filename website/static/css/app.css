@@ -40,6 +40,15 @@ header {
   left: 0;
 }
 
+.logo img {
+  width: 40px;
+}
+
+.logo-text h1 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
 footer {
   background-color: var(--background-dark);
   height: 100px;

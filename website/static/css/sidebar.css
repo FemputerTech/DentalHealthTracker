@@ -24,14 +24,14 @@
   width: 100%;
 }
 
-.logo-authenticated {
+.sidebar .logo {
   display: flex;
   justify-content: center;
   margin-top: 40px;
   margin-bottom: 40px;
 }
 
-.navbar-authenticated {
+.sidebar nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -39,21 +39,21 @@
   margin-bottom: 40px;
 }
 
-.navbar-authenticated .nav-list {
+.sidebar nav .nav-list {
   list-style-type: none;
 }
 
-.navbar-authenticated .nav-item {
+.sidebar nav .nav-item {
   margin-top: 20px;
 }
 
-.navbar-authenticated .nav-link {
+.sidebar nav .nav-link {
   display: flex;
   cursor: pointer;
   text-decoration: none;
 }
 
-.navbar-authenticated .nav-label {
+.sidebar nav .nav-label {
   display: none;
   color: #8d979b;
   margin-left: 10px;
