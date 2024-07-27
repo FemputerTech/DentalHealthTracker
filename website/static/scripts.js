@@ -95,9 +95,12 @@ function closeAiAssistant() {
 }
 
 async function sendMessage() {
-  const message = document.getElementById("message");
-  const userMessage = document.querySelector(".user-message");
-  userMessage.textContent = `You: ${message.value}`;
+  const messageInput = document.getElementById("message");
+  const messageDisplay = document.querySelector(".message-display");
+  const userMessage = document.createElement("div");
+  userMessage.classList.add("user-message");
+  userMessage.textContent = `You: ${messageInput.value}`;
+  messageDisplay.appendChild(userMessage);
 
   try {
     const response = await fetch("/chat", {
@@ -105,13 +108,17 @@ async function sendMessage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ message: message.value }),
+      body: JSON.stringify({ message: messageInput.value }),
     });
 
     const data = await response.json();
-    const botMessage = document.querySelector(".bot-message");
+    const botMessage = document.createElement("div");
+    botMessage.classList.add("bot-message");
     botMessage.textContent = `Bot: ${data.response}`;
+    messageDisplay.appendChild(botMessage);
   } catch (error) {
     console.error("Error sending message:", error);
+  } finally {
+    messageInput.value = "";
   }
 }
