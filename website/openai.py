@@ -7,7 +7,7 @@ import openai
 bot = Blueprint("bot", __name__)
 
 
-@bot.route("/chat", methods=["GET", "POST"])
+@bot.route("/chat", methods=["GET", "POST", "DELETE"])
 @login_required
 def chat():
     user_id = current_user.id
@@ -38,6 +38,12 @@ def chat():
         db.session.commit()
         
         return jsonify({"response":response})
+    
+    if request.method == "DELETE":
+        Message.query.filter_by(user_id=user_id).delete()
+        db.session.commit()
+        return jsonify({"success": "All messages deleted"}), 200
+
     
     messages = Message.query.filter_by(user_id=user_id).order_by(Message.timestamp).all()
     formatted_messages = [{"role": message.role, "content": message.content} for message in messages]

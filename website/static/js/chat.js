@@ -9,6 +9,11 @@ class Chat {
     this.appendMessages();
     const sendButton = document.querySelector(".send");
     sendButton.addEventListener("click", () => this.sendMessage());
+
+    const deleteButton = document.querySelector(".delete");
+    deleteButton.addEventListener("click", () => {
+      this.deleteMessages();
+    });
   }
 
   appendMessages() {
@@ -46,5 +51,16 @@ class Chat {
     } finally {
       userMessage.value = "";
     }
+  }
+
+  async deleteMessages() {
+    fetch("/chat", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    this.messageDisplay.innerHTML = "";
+    this.messages = null;
   }
 }
