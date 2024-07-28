@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from flask_login import current_user, login_required
+from flask_login import current_user, login_required, logout_user
 
 
 views = Blueprint("views", __name__)
@@ -8,6 +8,7 @@ views = Blueprint("views", __name__)
 @views.route("/", methods=["GET"])
 def index():
     print({"details":"It's aliiiiive!!"})
+    logout_user()
     return render_template("index.html", user=current_user)
 
 
