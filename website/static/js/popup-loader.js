@@ -1,7 +1,7 @@
-class ViewLoader {
+class PopupLoader {
   constructor() {
     this.sidebarLinks = document.querySelectorAll(".sidebar .nav-link.view");
-    this.popupView = document.querySelector(".popup-view");
+    this.popupContainer = document.querySelector(".popup-container");
     this.closeButton = null;
     this.init();
   }
@@ -9,37 +9,36 @@ class ViewLoader {
   init() {
     this.sidebarLinks.forEach((link) => {
       link.addEventListener("click", () => {
-        const view = link.getAttribute("data-section");
-        this.loadView(view);
+        const popup = link.getAttribute("data-popup");
+        this.loadPopup(popup);
       });
     });
-
     const storedView = localStorage.getItem("currentPopupView");
     if (storedView) {
-      this.loadView(storedView);
+      this.loadPopup(storedView);
     }
   }
 
-  async loadView(view) {
-    this.popupView.style.display = "flex";
-    fetch(`/dashboard/view/${view}`)
+  async loadPopup(popup) {
+    this.popupContainer.style.display = "flex";
+    fetch(`/popup/${popup}`)
       .then((response) => response.text())
       .then((html) => {
-        this.popupView.innerHTML = html;
-        this.closeButton = this.popupView.querySelector(".close");
+        this.popupContainer.innerHTML = html;
+        this.closeButton = this.popupContainer.querySelector(".close");
         if (this.closeButton) {
           this.closeButton.addEventListener("click", () => {
-            this.closeView();
+            this.closePopup();
           });
         }
         this.toggle_main_interaction("0.5", "none");
-        localStorage.setItem("currentPopupView", view);
+        localStorage.setItem("currentPopupView", popup);
       })
       .catch((error) => console.error("Error loading content:", error));
   }
 
-  closeView() {
-    this.popupView.style.display = "";
+  closePopup() {
+    this.popupContainer.style.display = "";
     this.toggle_main_interaction("1", "auto");
     localStorage.removeItem("currentPopupView");
     this.closeButton = null;
@@ -57,5 +56,5 @@ class ViewLoader {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  new ViewLoader();
+  new PopupLoader();
 });
