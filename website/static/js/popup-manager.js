@@ -25,7 +25,9 @@ class PopupManager {
       .then((response) => response.text())
       .then((html) => {
         this.popupContainer.innerHTML = html;
-        const closeButton = this.popupContainer.querySelector(".close");
+        const closeButton = this.popupContainer.querySelector(
+          ".popup-close-button"
+        );
         if (closeButton) {
           closeButton.addEventListener("click", () => {
             this.closePopup();
