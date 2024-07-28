@@ -13,10 +13,10 @@ class PopupManager {
         this.loadPopup(popup);
       });
     });
-    const storedView = localStorage.getItem("currentPopupView");
-    if (storedView) {
-      this.loadPopup(storedView);
-    }
+    // const storedView = localStorage.getItem("currentPopupView");
+    // if (storedView) {
+    // this.loadPopup(storedView);
+    // }
   }
 
   async loadPopup(popup) {
@@ -32,7 +32,7 @@ class PopupManager {
           });
         }
         this.toggle_main_interaction("0.5", "none");
-        localStorage.setItem("currentPopupView", popup);
+        // localStorage.setItem("currentPopupView", popup);
 
         this.initializePopupContentHandler(popup);
       })
