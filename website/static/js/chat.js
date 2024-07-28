@@ -16,6 +16,9 @@ class Chat {
     deleteButton.addEventListener("click", () => {
       this.deleteMessages();
     });
+
+    const dropdownButton = document.querySelector(".dropdown-button");
+    dropdownButton.addEventListener("click", () => this.toggleDropdown());
   }
 
   appendMessage(message) {
@@ -69,5 +72,11 @@ class Chat {
     });
     this.messageDisplay.innerHTML = "";
     this.messages = [];
+    this.toggleDropdown();
+  }
+
+  toggleDropdown() {
+    const dropdownContent = document.querySelector(".dropdown-content");
+    dropdownContent.classList.toggle("open");
   }
 }
