@@ -55,10 +55,10 @@ class PopupManager {
         this.currentPopupHandler = new Chat(messages);
         break;
       case "settings":
-        // this.currentPopupHandler = new Settings();
+        this.currentPopupHandler = new Settings();
         break;
       case "account":
-        // this.currentPopupHandler = new Account();
+        this.currentPopupHandler = new Account();
         break;
       default:
         break;
