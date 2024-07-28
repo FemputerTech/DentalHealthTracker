@@ -39,14 +39,13 @@ header nav .nav-item {
 
 header nav .nav-link {
   color: var(--text-normal);
-  cursor: pointer;
   text-decoration: none;
   text-transform: capitalize;
 }
 
 header nav.nav-link.active,
 header nav .nav-link:hover {
-  color: var(--primary-color);
+  color: var(--primary);
   font-weight: 500;
 }
 
@@ -92,7 +91,7 @@ header nav .nav-link:hover {
 
   header nav .nav-link.active,
   header nav .nav-link:hover {
-    color: var(--primary-color);
+    color: var(--primary);
     border-radius: 50px;
     font-weight: 700;
   }

@@ -28,7 +28,7 @@ main {
 .dashboard-section {
   display: flex;
   justify-content: flex-end;
-  border-bottom: 2px solid lightgray;
+  border-bottom: 2px solid var(--neutral-2);
 }
 
 .label-button {
@@ -47,23 +47,23 @@ main {
 
 .scheduleApptButton {
   display: inline-block;
-  background-color: #007bff;
+  background-color: var(--primary);
   border: none;
   border-radius: 5px;
-  color: #fff;
+  color: var(--text-light);
   text-align: center;
   margin-top: 10px;
   padding: 10px 15px;
 }
 
 .scheduleApptButton:hover {
-  background-color: #0056b3;
+  background-color: var(--primary-dark);
 }
 
 .dashboard {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  background-color: #f9f9f9;
+  background-color: var(--neutral-1);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   gap: 20px;
@@ -72,14 +72,14 @@ main {
 }
 
 .dashboard-item {
-  background-color: #fff;
+  background-color: var(--background);
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 15px;
 }
 
 .dashboard-item h4 {
-  color: #007bff;
+  color: var(--primary);
   margin-bottom: 10px;
 }
 
@@ -94,8 +94,8 @@ main {
 }
 
 .dashboard-item ul li {
-  background-color: #f1f1f1;
-  border: 1px solid #ddd;
+  background-color: var(--neutral-2);
+  border: 1px solid var(--neutral-3);
   border-radius: 5px;
   margin-bottom: 10px;
   padding: 10px;

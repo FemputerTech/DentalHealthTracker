@@ -21,7 +21,7 @@
   }
 
   .auth-form-container {
-    border: 1px solid black;
+    border: 1px solid var(--background-dark);
     border-radius: 20px;
     padding: 40px;
   }

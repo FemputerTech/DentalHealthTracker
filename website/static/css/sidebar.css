@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #091722;
+  background-color: var(--background-dark);
   transition: width 0.3s ease;
   width: 60px;
   height: 100vh;
@@ -55,7 +55,7 @@
 
 .sidebar nav .nav-label {
   display: none;
-  color: #8d979b;
+  color: var(--neutral-4);
   margin-left: 10px;
 }
 
