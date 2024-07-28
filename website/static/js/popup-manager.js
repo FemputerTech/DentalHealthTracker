@@ -1,8 +1,8 @@
 class PopupManager {
   constructor() {
+    this.currentPopupHandler = null;
     this.sidebarLinks = document.querySelectorAll(".sidebar .nav-link.view");
     this.popupContainer = document.querySelector(".popup-container");
-    this.closeButton = null;
     this.init();
   }
 
@@ -25,16 +25,27 @@ class PopupManager {
       .then((response) => response.text())
       .then((html) => {
         this.popupContainer.innerHTML = html;
-        this.closeButton = this.popupContainer.querySelector(".close");
-        if (this.closeButton) {
-          this.closeButton.addEventListener("click", () => {
+        const closeButton = this.popupContainer.querySelector(".close");
+        if (closeButton) {
+          closeButton.addEventListener("click", () => {
             this.closePopup();
           });
         }
         this.toggle_main_interaction("0.5", "none");
         localStorage.setItem("currentPopupView", popup);
+
+        this.initializePopupContentHandler(popup);
       })
       .catch((error) => console.error("Error loading content:", error));
+  }
+
+  async initializePopupContentHandler(popup) {
+    switch (popup) {
+      case "chat":
+        const messages = await fetchMessages();
+        this.currentPopupHandler = new Chat(messages);
+      default:
+    }
   }
 
   closePopup() {
