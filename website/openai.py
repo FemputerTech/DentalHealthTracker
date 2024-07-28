@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, session
 from flask_login import login_required, current_user
-from .models import Message, db
+from .models import Chat, db
 import openai
 
 
@@ -19,7 +19,7 @@ def chat():
             return jsonify({"error":"No message provided"})
 
         # Store user message
-        user_message = Message(user_id=user_id, role="user", content=message)
+        user_message = Chat(user_id=user_id, role="user", content=message)
         db.session.add(user_message)
         db.session.commit()
 
@@ -33,18 +33,18 @@ def chat():
         response = completion.choices[0].message['content']
 
         # Store bot response
-        bot_message = Message(user_id=user_id, role="bot", content=response)
+        bot_message = Chat(user_id=user_id, role="bot", content=response)
         db.session.add(bot_message)
         db.session.commit()
         
         return jsonify({"response":response})
     
     if request.method == "DELETE":
-        Message.query.filter_by(user_id=user_id).delete()
+        Chat.query.filter_by(user_id=user_id).delete()
         db.session.commit()
         return jsonify({"success": "All messages deleted"}), 200
 
     
-    messages = Message.query.filter_by(user_id=user_id).order_by(Message.timestamp).all()
+    messages = Chat.query.filter_by(user_id=user_id).order_by(Chat.timestamp).all()
     formatted_messages = [{"role": message.role, "content": message.content} for message in messages]
     return jsonify({"messages": formatted_messages})
