@@ -1,5 +1,5 @@
 /* ****************** Chat View ****************** */
-.assistant-section {
+.chat-popup {
   background-color: darkgray;
   border-radius: 20px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
@@ -8,19 +8,19 @@
   height: 500px;
 }
 
-.assistant-title {
+.chat-title {
   display: flex;
   justify-content: space-between;
   gap: 10px;
 }
 
-.close-assistant {
+.close {
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
-.chat-section {
+.chat-container {
   width: 100%;
   height: 100%;
 }
