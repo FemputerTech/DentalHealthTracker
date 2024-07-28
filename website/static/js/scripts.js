@@ -34,8 +34,7 @@ async function fetchAccount() {
       },
     });
     const data = await response.json();
-    console.log("user:", data.user);
-    return data.messages;
+    return data.user;
   } catch (error) {
     console.error("Error fetching messages:", error);
   }
