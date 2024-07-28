@@ -19,16 +19,19 @@ class Chat {
   }
 
   appendMessage(message) {
+    const messageDiv = document.createElement("div");
+    messageDiv.classList = "message-container";
+    this.messageDisplay.appendChild(messageDiv);
     if (message.role === "user") {
-      const userMessage = document.createElement("div");
+      const userMessage = document.createElement("p");
       userMessage.classList.add("user-message");
-      userMessage.textContent = `You: ${message.content}`;
-      this.messageDisplay.appendChild(userMessage);
+      userMessage.textContent = `${message.content}`;
+      messageDiv.appendChild(userMessage);
     } else {
-      const botMessage = document.createElement("div");
+      const botMessage = document.createElement("p");
       botMessage.classList.add("bot-message");
-      botMessage.textContent = `Bot: ${message.content}`;
-      this.messageDisplay.appendChild(botMessage);
+      botMessage.textContent = `${message.content}`;
+      messageDiv.appendChild(botMessage);
     }
   }
 
