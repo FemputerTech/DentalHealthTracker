@@ -4,8 +4,6 @@ import datetime
 
 
 class User(db.Model, UserMixin):
-    __tablename__ = 'users'
-
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(40), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
@@ -13,6 +11,7 @@ class User(db.Model, UserMixin):
     dob = db.Column(db.Date, nullable=False)
     tel = db.Column(db.Integer, nullable=False)
     password = db.Column(db.String(80), nullable=False)
+    dentist_id = db.Column(db.Integer, nullable=True)
 
 
 class Chat(db.Model):
@@ -23,7 +22,7 @@ class Chat(db.Model):
     timestamp = db.Column(db.DateTime, default=datetime.datetime.now())
 
 
-class Providers(db.Model):
+class Dentist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(40), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
