@@ -37,7 +37,9 @@ class ContentManager {
     switch (section) {
       case "overview":
         this.currentSectionHandler = new ToDo();
+        break;
       default:
+        break;
     }
   }
 }
