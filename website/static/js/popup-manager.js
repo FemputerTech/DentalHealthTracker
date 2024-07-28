@@ -31,7 +31,7 @@ class PopupManager {
             this.closePopup();
           });
         }
-        this.toggle_main_interaction("0.5", "none");
+        this.toggle_main_interaction("0.5", "none", "rgba(0, 0, 0, 0.2)");
         // localStorage.setItem("currentPopupView", popup);
 
         this.initializePopupContentHandler(popup);
@@ -50,19 +50,21 @@ class PopupManager {
 
   closePopup() {
     this.popupContainer.style.display = "";
-    this.toggle_main_interaction("1", "auto");
+    this.toggle_main_interaction("1", "auto", "transparent");
     localStorage.removeItem("currentPopupView");
     this.closeButton = null;
   }
 
-  toggle_main_interaction(opacity, pointerEvents) {
+  toggle_main_interaction(opacity, pointerEvents, color) {
     const sidebar = document.querySelector(".sidebar");
     const dashboard = document.querySelector("main");
 
     sidebar.style.pointerEvents = pointerEvents;
-    dashboard.style.pointerEvents = pointerEvents;
     sidebar.style.opacity = opacity;
+
+    dashboard.style.pointerEvents = pointerEvents;
     dashboard.style.opacity = opacity;
+    dashboard.style.backgroundColor = color;
   }
 }
 
