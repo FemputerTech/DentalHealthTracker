@@ -39,7 +39,7 @@ main {
   padding: 10px 30px;
 }
 
-.popup-view {
+.popup-container {
   position: absolute;
   display: none;
   justify-content: center;
