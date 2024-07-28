@@ -1,4 +1,4 @@
-class PopupLoader {
+class PopupManager {
   constructor() {
     this.sidebarLinks = document.querySelectorAll(".sidebar .nav-link.view");
     this.popupContainer = document.querySelector(".popup-container");
@@ -56,5 +56,5 @@ class PopupLoader {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  new PopupLoader();
+  new PopupManager();
 });

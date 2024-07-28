@@ -1,4 +1,4 @@
-class ContentLoader {
+class ContentManager {
   constructor() {
     this.loadContentButtons = document.querySelectorAll(".label-button");
     this.sidebarLinks = document.querySelectorAll(".sidebar .nav-link.content");
@@ -32,8 +32,8 @@ class ContentLoader {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const contentLoader = new ContentLoader();
+  const contentManager = new ContentManager();
   const savedDashboardSection =
     localStorage.getItem("currentDashboardSection") || "overview";
-  contentLoader.loadContent(savedDashboardSection);
+  contentManager.loadContent(savedDashboardSection);
 });
