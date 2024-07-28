@@ -1,5 +1,6 @@
 class ContentManager {
   constructor() {
+    this.currentSectionHandler = null;
     this.loadContentButtons = document.querySelectorAll(".label-button");
     this.sidebarLinks = document.querySelectorAll(".sidebar .nav-link.content");
     this.init();
@@ -26,8 +27,18 @@ class ContentManager {
       .then((html) => {
         document.querySelector(".dashboard-content").innerHTML = html;
         localStorage.setItem("currentDashboardSection", section);
+
+        this.initializeSectionContentHandler(section);
       })
       .catch((error) => console.error("Error loading content:", error));
+  }
+
+  async initializeSectionContentHandler(section) {
+    switch (section) {
+      case "overview":
+        this.currentSectionHandler = new ToDo();
+      default:
+    }
   }
 }
 
