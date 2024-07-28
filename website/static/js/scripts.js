@@ -25,6 +25,22 @@ async function fetchMessages() {
   }
 }
 
+async function fetchAccount() {
+  try {
+    const response = await fetch("/account", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log("user:", data.user);
+    return data.messages;
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const dateContainer = document.querySelector(".date-container");
   const today = new Date();
