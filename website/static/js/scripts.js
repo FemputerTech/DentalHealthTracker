@@ -24,3 +24,11 @@ async function fetchMessages() {
     console.error("Error fetching messages:", error);
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const dateContainer = document.querySelector(".date-container");
+  const today = new Date();
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const formattedDate = today.toLocaleDateString(undefined, options);
+  dateContainer.textContent = `Today's Date: ${formattedDate}`;
+});
