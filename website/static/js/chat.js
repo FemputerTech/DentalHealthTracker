@@ -6,7 +6,9 @@ class Chat {
   }
 
   init() {
-    this.appendMessages();
+    this.messages.forEach((message) => {
+      this.appendMessage(message);
+    });
     const sendButton = document.querySelector(".send");
     sendButton.addEventListener("click", () => this.sendMessage());
 
@@ -16,40 +18,42 @@ class Chat {
     });
   }
 
-  appendMessages() {
-    this.messages.forEach((message) => {
-      if (message.role === "user") {
-        const userMessage = document.createElement("div");
-        userMessage.classList.add("user-message");
-        userMessage.textContent = `You: ${message.content}`;
-        this.messageDisplay.appendChild(userMessage);
-      } else {
-        const botMessage = document.createElement("div");
-        botMessage.classList.add("bot-message");
-        botMessage.textContent = `Bot: ${message.content}`;
-        this.messageDisplay.appendChild(botMessage);
-      }
-    });
+  appendMessage(message) {
+    if (message.role === "user") {
+      const userMessage = document.createElement("div");
+      userMessage.classList.add("user-message");
+      userMessage.textContent = `You: ${message.content}`;
+      this.messageDisplay.appendChild(userMessage);
+    } else {
+      const botMessage = document.createElement("div");
+      botMessage.classList.add("bot-message");
+      botMessage.textContent = `Bot: ${message.content}`;
+      this.messageDisplay.appendChild(botMessage);
+    }
   }
 
   async sendMessage() {
-    const userMessage = document.getElementById("message");
-    this.messages.push({ content: userMessage.value, role: "user" });
+    const userMessageInput = document.getElementById("message");
+    const userMessageContent = userMessageInput.value;
+    const userMessage = { content: userMessageContent, role: "user" };
+    this.appendMessage(userMessage);
+    userMessageInput.value = "";
+    this.messages.push(userMessage);
     try {
       const response = await fetch("/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: userMessage.value }),
+        body: JSON.stringify({ message: userMessageContent }),
       });
       const data = await response.json();
-      this.messages.push({ content: data.response, role: "bot" });
-      this.appendMessages();
+
+      const botMessage = { content: data.response, role: "bot" };
+      this.appendMessage(botMessage);
+      this.messages.push(botMessage);
     } catch (error) {
       console.error("Error sending message:", error);
-    } finally {
-      userMessage.value = "";
     }
   }
 
@@ -61,6 +65,6 @@ class Chat {
       },
     });
     this.messageDisplay.innerHTML = "";
-    this.messages = null;
+    this.messages = [];
   }
 }
