@@ -2,9 +2,10 @@
 {% extends "base.html" %} {% block css %}
 <link rel="stylesheet" href="../static/css/dashboard.css" />
 <link rel="stylesheet" href="../static/css/chat.css" />
+<link rel="stylesheet" href="../static/css/todo.css" />
 {% endblock %}{% block content %}
 <main>
-  <div class="dashboard-title">
+  <div class="dashboard-header">
     <div class="logo-text">
       <h1>
         <span style="color: var(--primary-color); font-weight: 700">Smile</span
@@ -15,10 +16,10 @@
       ><box-icon name="user-circle"></box-icon
     ></a>
   </div>
-  <div class="dashboard">
+  <div class="dashboard-main">
     <h1>Welcome back, {{user.first_name}}!</h1>
     <p class="date-container"><!-- dynamically filling in today's date--></p>
-    <div class="dashboard-labels">
+    <div class="dashboard-section">
       {% for label in ["overview", "appointments", "analytics"] %}
       <button class="label-button" data-section="{{ label }}">
         <h2>{{ label }}</h2>
