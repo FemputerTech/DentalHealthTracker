@@ -50,6 +50,10 @@ header {
   font-weight: 700;
 }
 
+button {
+  cursor: pointer;
+}
+
 footer {
   background-color: var(--background-dark);
   height: 100px;
