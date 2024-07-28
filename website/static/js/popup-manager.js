@@ -2,6 +2,7 @@ class PopupManager {
   constructor() {
     this.currentPopupHandler = null;
     this.sidebarLinks = document.querySelectorAll(".sidebar .nav-link.view");
+    this.accountLink = document.querySelector(".dashboard-header-link.view");
     this.popupContainer = document.querySelector(".popup-container");
     this.init();
   }
@@ -13,6 +14,12 @@ class PopupManager {
         this.loadPopup(popup);
       });
     });
+
+    this.accountLink.addEventListener("click", () => {
+      const popup = this.accountLink.getAttribute("data-popup");
+      this.loadPopup(popup);
+    });
+
     // const storedView = localStorage.getItem("currentPopupView");
     // if (storedView) {
     // this.loadPopup(storedView);
@@ -46,7 +53,15 @@ class PopupManager {
       case "chat":
         const messages = await fetchMessages();
         this.currentPopupHandler = new Chat(messages);
+        break;
+      case "settings":
+        // this.currentPopupHandler = new Settings();
+        break;
+      case "account":
+        // this.currentPopupHandler = new Account();
+        break;
       default:
+        break;
     }
   }
 
