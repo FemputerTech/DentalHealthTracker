@@ -58,7 +58,8 @@ class PopupManager {
         this.currentPopupHandler = new Settings();
         break;
       case "account":
-        this.currentPopupHandler = new Account();
+        const user = await fetchAccount();
+        this.currentPopupHandler = new Account(user);
         break;
       default:
         break;
