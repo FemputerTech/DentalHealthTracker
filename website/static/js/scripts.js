@@ -8,6 +8,22 @@ function toggleNavList() {
   }
 }
 
+function displayPopup(popup) {
+  document.querySelectorAll(".popup-container").forEach((view) => {
+    view.style.display = "none";
+  });
+
+  const popupContainer = document.getElementById(popup);
+  if (popupContainer) {
+    popupContainer.style.display = "flex";
+  }
+}
+
+function closePopup(popup) {
+  const popupContainer = document.getElementById(popup);
+  popupContainer.style.display = "none";
+}
+
 function displayDashboard(label) {
   document.querySelectorAll(".dashboard-content").forEach((section) => {
     section.style.display = "none";
@@ -35,21 +51,6 @@ async function fetchMessages() {
     });
     const data = await response.json();
     return data.messages;
-  } catch (error) {
-    console.error("Error fetching messages:", error);
-  }
-}
-
-async function fetchAccount() {
-  try {
-    const response = await fetch("/account", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    return data.user[0];
   } catch (error) {
     console.error("Error fetching messages:", error);
   }

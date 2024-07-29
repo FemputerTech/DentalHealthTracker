@@ -1,19 +1,23 @@
 {% block css %} {% endblock %}
 <div class="popup">
   <div class="popup-title">
-    <button class="popup-close-button" type="button">
+    <button
+      class="popup-close-button"
+      type="button"
+      onclick="closePopup('account')"
+    >
       <box-icon name="x-circle"></box-icon>
     </button>
-    <h2 class="user-account"></h2>
+    <h2>Account Number: {{ user.id }}</h2>
   </div>
   <h4>Name:</h4>
-  <p class="user-name"></p>
+  {{ user.first_name }} {{ user.last_name }}
   <h4>Email:</h4>
-  <p class="user-email"></p>
+  {{ user.email }}
   <h4>Date of birth:</h4>
-  <p class="user-dob"></p>
+  {{ user.dob }}
   <h4>Phone number:</h4>
-  <p class="user-tel"></p>
+  {{ user.tel }}
   <h4>Primary Dentist:</h4>
-  <p class="user-dentist"></p>
+  {{ user.dentist_id }}
 </div>
