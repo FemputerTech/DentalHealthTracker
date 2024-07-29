@@ -16,12 +16,26 @@ function displayPopup(popup) {
   const popupContainer = document.getElementById(popup);
   if (popupContainer) {
     popupContainer.style.display = "flex";
+    toggle_main_interaction("0.5", "none", "rgba(0, 0, 0, 0.2)");
   }
+}
+
+function toggle_main_interaction(opacity, pointerEvents, color) {
+  const sidebar = document.querySelector(".sidebar");
+  const dashboard = document.querySelector("main");
+
+  sidebar.style.pointerEvents = pointerEvents;
+  sidebar.style.opacity = opacity;
+
+  dashboard.style.pointerEvents = pointerEvents;
+  dashboard.style.opacity = opacity;
+  dashboard.style.backgroundColor = color;
 }
 
 function closePopup(popup) {
   const popupContainer = document.getElementById(popup);
   popupContainer.style.display = "none";
+  toggle_main_interaction("1", "auto", "transparent");
 }
 
 function displayDashboard(label) {
@@ -38,23 +52,6 @@ function displayDashboard(label) {
 document.addEventListener("DOMContentLoaded", () => {
   displayDashboard("overview");
 });
-
-async function fetchMessages() {
-  const messageDisplay = document.querySelector(".message-display");
-  messageDisplay.innerHTML = "";
-  try {
-    const response = await fetch("/chat", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    return data.messages;
-  } catch (error) {
-    console.error("Error fetching messages:", error);
-  }
-}
 
 document.addEventListener("DOMContentLoaded", function () {
   const dateContainer = document.querySelector(".date-container");
