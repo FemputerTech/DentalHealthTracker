@@ -60,3 +60,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const formattedDate = today.toLocaleDateString(undefined, options);
   dateContainer.textContent = `Today's Date: ${formattedDate}`;
 });
+
+function editUserInfo(fieldId) {
+  const field = document.getElementById(fieldId);
+  field.removeAttribute("readonly");
+  field.focus();
+}

@@ -1,4 +1,6 @@
-{% block css %} {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="../static/css/account.css" />
+{% endblock %}
 <div class="popup">
   <div class="popup-title">
     <button
@@ -10,14 +12,54 @@
     </button>
     <h2>Account Number: {{ user.id }}</h2>
   </div>
-  <h4>Name:</h4>
-  {{ user.first_name }} {{ user.last_name }}
-  <h4>Email:</h4>
-  {{ user.email }}
-  <h4>Date of birth:</h4>
-  {{ user.dob }}
-  <h4>Phone number:</h4>
-  {{ user.tel }}
-  <h4>Primary Dentist:</h4>
-  {{ user.dentist_id }}
+  <div class="popup-content">
+    <form class="user-form" method="POST">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input
+          id="name"
+          name="name"
+          value="{{user.first_name}} {{user.last_name}}"
+          readonly
+        />
+      </div>
+      <div class="form-group">
+        <label for="dob">Date of birth:</label>
+        <input
+          id="dob"
+          name="dob"
+          value="{{user.dob}}"
+          focus="disabled"
+          readonly
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" name="email" value="{{user.email}}" readonly />
+        <button type="button" onclick="editUserInfo('email')">
+          <box-icon name="edit-alt"></box-icon>
+        </button>
+      </div>
+      <div class="form-group">
+        <label for="tel">Phone:</label>
+        <input id="tel" name="tel" value="{{user.tel}}" readonly />
+        <button type="button" onclick="editUserInfo('tel')">
+          <box-icon name="edit-alt"></box-icon>
+        </button>
+      </div>
+      <div class="form-group">
+        <label for="dentist">Primary Dentist:</label>
+        <input
+          id="dentist"
+          name="dentist"
+          value="{{user.dentist_id}}"
+          readonly
+        />
+        <button type="button" onclick="editUserInfo('dentist')">
+          <box-icon name="edit-alt"></box-icon>
+        </button>
+      </div>
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
 </div>
