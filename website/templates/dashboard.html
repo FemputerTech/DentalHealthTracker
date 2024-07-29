@@ -11,9 +11,9 @@
         >Guide.ai
       </h1>
     </div>
-    <a class="dashboard-header-link view" id="account" data-popup="account"
-      ><box-icon name="user-circle"></box-icon
-    ></a>
+    <button type="button" onclick="displayPopup('account')">
+      <box-icon name="user-circle"></box-icon>
+    </button>
   </div>
   <div class="dashboard-main">
     <h1>Welcome back, {{user.first_name}}!</h1>
@@ -32,10 +32,11 @@
     {% endfor %}
   </div>
 </main>
-<div class="popup-container">
-  <!-- dynamic view will go here -->
+{% for popup in ["account", "chat", "settings"]%}
+<div class="popup-container" id="{{ popup }}">
+  {% include "partials/" + popup + ".html" %}
 </div>
-{% endblock %} {% block js %}
+{% endfor %} {% endblock %} {% block js %}
 <script src="../static/js/chat.js"></script>
 <script src="../static/js/account.js"></script>
 <script src="../static/js/settings.js"></script>
