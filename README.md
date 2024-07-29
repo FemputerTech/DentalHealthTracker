@@ -9,3 +9,8 @@ API: [OpenAI](https://platform.openai.com/docs/quickstart)
 3. Activate the environment in your shell `source .env/bin/activate`
 4. Install dependencies `pip3 install -r requirements.txt`
 5. Select the python interpreter for the virtual environment
+
+## Testing
+
+1. Run `coverage run -m pytest`
+2. Run `coverage html`

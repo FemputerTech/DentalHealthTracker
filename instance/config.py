@@ -5,3 +5,7 @@ class Config:
     SECRET_KEY = 'my-secure-secret-key'
     SQLALCHEMY_DATABASE_URI = f"sqlite:///{os.path.join(BASE_DIRECTORY, '../website/database.db')}"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SESSION_COOKIE_EXPIRES = 0
+
+class TestConfig(Config):
+    TESTING = True

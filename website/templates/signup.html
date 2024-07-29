@@ -6,6 +6,17 @@
   <div class="auth-form-container">
     <h1>Sign up</h1>
     <p>Enter your details below to create an account and get started</p>
+
+    <!-- Display Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <ul class="flashes">
+      {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+
     <form class="auth-form" id="signup-form" method="POST">
       <label for="first-name">First Name</label>
       <input
