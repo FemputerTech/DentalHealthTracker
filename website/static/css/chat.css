@@ -45,7 +45,7 @@
 
   .message-display {
     overflow: auto;
-    height: 100%;
+    height: 70%;
   }
 
   .message-container {
@@ -73,17 +73,24 @@
     background-color: var(--neutral-2);
   }
 
+  .message-input-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 30%;
+  }
   .message-input {
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     align-items: center;
     background-color: var(--background);
     border: 2px solid var(--neutral-2);
     border-radius: 20px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateX(-50%);
-    left: 50%;
-    bottom: 30px;
+    /* transform: translateX(-50%); */
+    /* left: 50%; */
+    /* bottom: 30px; */
+    margin: 30px;
     width: 500px;
   }
 
