@@ -1,24 +1,20 @@
 class Chat {
-  constructor(messages) {
+  constructor() {
     this.messageDisplay = document.querySelector(".message-display");
-    this.messages = messages;
     this.init();
   }
 
   init() {
-    this.messages.forEach((message) => {
-      this.appendMessage(message);
-    });
     const sendButton = document.querySelector(".send");
     sendButton.addEventListener("click", () => this.sendMessage());
+
+    const dropdownButton = document.querySelector(".dropdown-button");
+    dropdownButton.addEventListener("click", () => this.toggleDropdown());
 
     const deleteButton = document.querySelector(".delete");
     deleteButton.addEventListener("click", () => {
       this.deleteMessages();
     });
-
-    const dropdownButton = document.querySelector(".dropdown-button");
-    dropdownButton.addEventListener("click", () => this.toggleDropdown());
   }
 
   appendMessage(message) {
@@ -44,7 +40,6 @@ class Chat {
     const userMessage = { content: userMessageContent, role: "user" };
     this.appendMessage(userMessage);
     userMessageInput.value = "";
-    this.messages.push(userMessage);
     try {
       const response = await fetch("/chat", {
         method: "POST",
@@ -54,25 +49,27 @@ class Chat {
         body: JSON.stringify({ message: userMessageContent }),
       });
       const data = await response.json();
-
       const botMessage = { content: data.response, role: "bot" };
       this.appendMessage(botMessage);
-      this.messages.push(botMessage);
     } catch (error) {
       console.error("Error sending message:", error);
     }
   }
 
   async deleteMessages() {
-    fetch("/chat", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    this.messageDisplay.innerHTML = "";
-    this.messages = [];
-    this.toggleDropdown();
+    try {
+      const response = await fetch("/chat", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      this.messageDisplay.innerHTML = "";
+      this.messages = [];
+      this.toggleDropdown();
+    } catch (error) {
+      console.error("Error deleting messages:", error);
+    }
   }
 
   toggleDropdown() {
@@ -80,3 +77,7 @@ class Chat {
     dropdownContent.classList.toggle("open");
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  new Chat();
+});
