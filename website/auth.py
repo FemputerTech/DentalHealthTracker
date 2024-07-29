@@ -96,7 +96,7 @@ def login():
         if user:
             if bcrypt.check_password_hash(user.password, password):
                 login_user(user, remember=True)
-                return redirect(url_for("views.dashboard"))
+                return redirect(url_for("dash.dashboard"))
             else:
                 print({"Password Login Error":"Incorrect password"})
         else:
