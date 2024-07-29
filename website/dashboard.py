@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template
 from flask_login import current_user, login_required
-from .models import Chat, db
+from .models import Chat
 
 
 dash = Blueprint("dash", __name__)
