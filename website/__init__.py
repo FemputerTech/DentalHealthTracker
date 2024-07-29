@@ -17,12 +17,14 @@ def create_app(config_class='instance.config.Config'):
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    from website.views import views
     from website.auth import auth
+    from website.views import views
+    from website.dashboard import dash
     from website.openai import bot
 
-    app.register_blueprint(views)
     app.register_blueprint(auth)
+    app.register_blueprint(views)
+    app.register_blueprint(dash)
     app.register_blueprint(bot)
 
     return app

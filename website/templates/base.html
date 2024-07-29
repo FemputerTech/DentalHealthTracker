@@ -26,26 +26,22 @@
         <div class="nav-top">
           <ul class="nav-list">
             <li class="nav-item">
-              <a
-                class="nav-link content"
-                id="dashboard"
-                data-section="overview"
-              >
+              <a class="nav-link" href="/dashboard">
                 <box-icon name="chart" color="var(--neutral-4)"></box-icon>
                 <div class="nav-label">Dashboard</div>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link view" id="assistant" data-popup="chat">
+              <button class="nav-link" onclick="displayPopup('chat')">
                 <box-icon
                   name="message-rounded-dots"
                   color="var(--neutral-4)"
                 ></box-icon>
                 <span class="nav-label">AI Chat</span>
-              </a>
+              </button>
             </li>
             <li class="nav-item">
-              <a class="nav-link content" id="calendar" data-section="calendar">
+              <a class="nav-link" href="/dashboard">
                 <box-icon name="calendar" color="var(--neutral-4)"></box-icon>
                 <span class="nav-label">Calendar</span>
               </a>
@@ -55,10 +51,10 @@
         <div class="nav-bottom">
           <ul class="nav-list">
             <li class="nav-item">
-              <a class="nav-link view" id="settings" data-popup="settings">
+              <button class="nav-link" onclick="displayPopup('settings')">
                 <box-icon name="cog" color="var(--neutral-4)"></box-icon>
                 <span class="nav-label">Settings</span>
-              </a>
+              </button>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="logout" href="/logout">
@@ -103,11 +99,6 @@
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="../static/js/scripts.js"></script>
     <script src="../static/js/sidebar.js"></script>
-    <script src="../static/js/content-manager.js"></script>
-    <script src="../static/js/popup-manager.js"></script>
-    <script src="../static/js/chat.js"></script>
-    <script src="../static/js/account.js"></script>
-    <script src="../static/js/settings.js"></script>
-    <script src="../static/js/todo.js"></script>
+    {% block js %}{% endblock %}
   </body>
 </html>

@@ -8,37 +8,50 @@ function toggleNavList() {
   }
 }
 
-async function fetchMessages() {
-  const messageDisplay = document.querySelector(".message-display");
-  messageDisplay.innerHTML = "";
-  try {
-    const response = await fetch("/chat", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    return data.messages;
-  } catch (error) {
-    console.error("Error fetching messages:", error);
+function displayPopup(popup) {
+  document.querySelectorAll(".popup-container").forEach((view) => {
+    view.style.display = "none";
+  });
+
+  const popupContainer = document.getElementById(popup);
+  if (popupContainer) {
+    popupContainer.style.display = "flex";
+    toggle_main_interaction("0.5", "none", "rgba(0, 0, 0, 0.2)");
   }
 }
 
-async function fetchAccount() {
-  try {
-    const response = await fetch("/account", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    return data.user[0];
-  } catch (error) {
-    console.error("Error fetching messages:", error);
+function toggle_main_interaction(opacity, pointerEvents, color) {
+  const sidebar = document.querySelector(".sidebar");
+  const dashboard = document.querySelector("main");
+
+  sidebar.style.pointerEvents = pointerEvents;
+  sidebar.style.opacity = opacity;
+
+  dashboard.style.pointerEvents = pointerEvents;
+  dashboard.style.opacity = opacity;
+  dashboard.style.backgroundColor = color;
+}
+
+function closePopup(popup) {
+  const popupContainer = document.getElementById(popup);
+  popupContainer.style.display = "none";
+  toggle_main_interaction("1", "auto", "transparent");
+}
+
+function displayDashboard(label) {
+  document.querySelectorAll(".dashboard-content").forEach((section) => {
+    section.style.display = "none";
+  });
+
+  const dashboardContent = document.getElementById(label);
+  if (dashboardContent) {
+    dashboardContent.style.display = "block";
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  displayDashboard("overview");
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   const dateContainer = document.querySelector(".date-container");

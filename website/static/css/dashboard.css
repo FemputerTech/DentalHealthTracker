@@ -32,6 +32,7 @@ main {
 }
 
 .dashboard-content {
+  display: none;
   height: 100%;
 }
 
@@ -103,6 +104,21 @@ main {
   border-radius: 5px;
   margin-bottom: 10px;
   padding: 10px;
+}
+
+.add-task {
+  display: inline-block;
+  background-color: var(--primary);
+  border: none;
+  border-radius: 5px;
+  color: var(--text-light);
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px 15px;
+}
+
+.add-task:hover {
+  background-color: var(--primary-dark);
 }
 
 @media (min-width: 481px) {

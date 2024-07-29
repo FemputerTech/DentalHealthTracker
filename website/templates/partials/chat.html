@@ -3,7 +3,11 @@
 {% endblock %}
 <div class="popup">
   <div class="popup-title">
-    <button class="popup-close-button" type="button">
+    <button
+      class="popup-close-button"
+      type="button"
+      onclick="closePopup('chat')"
+    >
       <box-icon name="x-circle"></box-icon>
     </button>
     <div class="chat-dropdown-section">
@@ -16,9 +20,17 @@
       </div>
     </div>
   </div>
-  <div class="chat-container">
+  <div class="popup-content">
     <div class="message-display">
-      <!-- Dynamic message data will go here -->
+      {% for message in messages %}
+      <div class="message-container">
+        {% if message.role == "user" %}
+        <p class="user-message">{{ message.content }}</p>
+        {% else %}
+        <p class="bot-message">{{ message.content }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
     </div>
     <div class="message-input">
       <input

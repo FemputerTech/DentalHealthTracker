@@ -11,26 +11,31 @@
         >Guide.ai
       </h1>
     </div>
-    <a class="dashboard-header-link view" id="account" data-popup="account"
-      ><box-icon name="user-circle"></box-icon
-    ></a>
+    <button type="button" onclick="displayPopup('account')">
+      <box-icon name="user-circle"></box-icon>
+    </button>
   </div>
   <div class="dashboard-main">
     <h1>Welcome back, {{user.first_name}}!</h1>
     <p class="date-container"><!-- dynamically filling in today's date--></p>
     <div class="dashboard-section">
       {% for label in ["overview", "appointments", "analytics"] %}
-      <button class="label-button" data-section="{{ label }}">
+      <button class="label-button" onclick="displayDashboard('{{ label }}')">
         <h2>{{ label }}</h2>
       </button>
       {% endfor %}
     </div>
-    <section class="dashboard-content">
-      <!-- dynamic content will go here -->
+    {% for label in ["overview", "appointments", "analytics"] %}
+    <section class="dashboard-content" id="{{ label }}">
+      {% include "partials/" + label + ".html" %}
     </section>
+    {% endfor %}
   </div>
 </main>
-<div class="popup-container">
-  <!-- dynamic view will go here -->
+{% for popup in ["account", "chat", "settings"]%}
+<div class="popup-container" id="{{ popup }}">
+  {% include "partials/" + popup + ".html" %}
 </div>
+{% endfor %} {% endblock %} {% block js %}
+<script src="../static/js/chat.js"></script>
 {% endblock %}
