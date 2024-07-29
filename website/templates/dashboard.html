@@ -20,17 +20,23 @@
     <p class="date-container"><!-- dynamically filling in today's date--></p>
     <div class="dashboard-section">
       {% for label in ["overview", "appointments", "analytics"] %}
-      <button class="label-button" data-section="{{ label }}">
+      <button class="label-button" onclick="displayDashboard('{{ label }}')">
         <h2>{{ label }}</h2>
       </button>
       {% endfor %}
     </div>
-    <section class="dashboard-content">
-      <!-- dynamic content will go here -->
+    {% for label in ["overview", "appointments", "analytics"] %}
+    <section class="dashboard-content" id="{{ label }}">
+      {% include "partials/" + label + ".html" %}
     </section>
+    {% endfor %}
   </div>
 </main>
 <div class="popup-container">
   <!-- dynamic view will go here -->
 </div>
+{% endblock %} {% block js %}
+<script src="../static/js/chat.js"></script>
+<script src="../static/js/account.js"></script>
+<script src="../static/js/settings.js"></script>
 {% endblock %}

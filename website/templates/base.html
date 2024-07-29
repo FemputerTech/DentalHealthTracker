@@ -26,11 +26,7 @@
         <div class="nav-top">
           <ul class="nav-list">
             <li class="nav-item">
-              <a
-                class="nav-link content"
-                id="dashboard"
-                data-section="overview"
-              >
+              <a class="nav-link" id="dashboard" href="/dashboard">
                 <box-icon name="chart" color="var(--neutral-4)"></box-icon>
                 <div class="nav-label">Dashboard</div>
               </a>
@@ -45,7 +41,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link content" id="calendar" data-section="calendar">
+              <a class="nav-link" id="calendar" href="/dashboard">
                 <box-icon name="calendar" color="var(--neutral-4)"></box-icon>
                 <span class="nav-label">Calendar</span>
               </a>
@@ -103,11 +99,8 @@
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="../static/js/scripts.js"></script>
     <script src="../static/js/sidebar.js"></script>
-    <script src="../static/js/content-manager.js"></script>
+    {% block js %}{% endblock %}
+
     <script src="../static/js/popup-manager.js"></script>
-    <script src="../static/js/chat.js"></script>
-    <script src="../static/js/account.js"></script>
-    <script src="../static/js/settings.js"></script>
-    <script src="../static/js/todo.js"></script>
   </body>
 </html>

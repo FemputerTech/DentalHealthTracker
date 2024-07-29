@@ -8,6 +8,21 @@ function toggleNavList() {
   }
 }
 
+function displayDashboard(label) {
+  document.querySelectorAll(".dashboard-content").forEach((section) => {
+    section.style.display = "none";
+  });
+
+  const dashboardContent = document.getElementById(label);
+  if (dashboardContent) {
+    dashboardContent.style.display = "block";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  displayDashboard("overview");
+});
+
 async function fetchMessages() {
   const messageDisplay = document.querySelector(".message-display");
   messageDisplay.innerHTML = "";

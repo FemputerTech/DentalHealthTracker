@@ -24,12 +24,6 @@ def dashboard():
     return render_template("dashboard.html", user=current_user)
 
 
-@views.route("/dashboard/<section>", methods=["GET"])
-@login_required
-def load_content(section):
-    return render_template(f"partials/{section}.html")
-
-
 @views.route("/popup/<popup>", methods=["GET"])
 @login_required
 def load_popup(popup):
