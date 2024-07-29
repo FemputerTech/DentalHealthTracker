@@ -18,12 +18,6 @@ def about():
     return render_template("about.html", user=current_user)
 
 
-@views.route("/dashboard", methods=["GET", "POST"])
-@login_required
-def dashboard():
-    return render_template("dashboard.html", user=current_user)
-
-
 @views.route("/popup/<popup>", methods=["GET"])
 @login_required
 def load_popup(popup):
