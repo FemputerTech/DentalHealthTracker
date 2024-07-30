@@ -13,6 +13,11 @@
   flex-direction: column;
 }
 
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
 @media (min-width: 481px) {
   .auth-section {
     align-items: center;

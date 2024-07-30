@@ -6,17 +6,6 @@
   <div class="auth-form-container">
     <h1>Sign up</h1>
     <p>Enter your details below to create an account and get started</p>
-
-    <!-- Display Flash Messages -->
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %}
-    <ul class="flashes">
-      {% for category, message in messages %}
-      <li class="{{ category }}">{{ message }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %} {% endwith %}
-
     <form class="auth-form" id="signup-form" method="POST">
       <label for="first-name">First Name</label>
       <input
@@ -24,8 +13,10 @@
         id="first-name"
         name="first-name"
         placeholder="First name"
-        required
       />
+      {% if errors.first_name %}
+      <div class="error-message">{{ errors.first_name }}</div>
+      {% endif %}
 
       <label for="last-name">Last Name</label>
       <input
@@ -33,35 +24,28 @@
         id="last-name"
         name="last-name"
         placeholder="Last name"
-        required
       />
+      {% if errors.last_name %}
+      <div class="error-message">{{ errors.last_name }}</div>
+      {% endif %}
 
       <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Email"
-        required
-      />
+      <input type="email" id="email" name="email" placeholder="Email" />
+      {% if errors.email %}
+      <div class="error-message">{{ errors.email }}</div>
+      {% endif %}
 
       <label for="dob">Date of Birth</label>
-      <input
-        type="date"
-        id="dob"
-        name="dob"
-        placeholder="Date of birth"
-        required
-      />
+      <input type="date" id="dob" name="dob" placeholder="Date of birth" />
+      {% if errors.dob %}
+      <div class="error-message">{{ errors.dob }}</div>
+      {% endif %}
 
       <label for="tel">Phone Number</label>
-      <input
-        type="tel"
-        id="tel"
-        name="tel"
-        placeholder="Phone number"
-        required
-      />
+      <input type="tel" id="tel" name="tel" placeholder="Phone number" />
+      {% if errors.tel %}
+      <div class="error-message">{{ errors.tel }}</div>
+      {% endif %}
 
       <label for="password">Password</label>
       <input
@@ -69,8 +53,10 @@
         id="password"
         name="password"
         placeholder="Password"
-        required
       />
+      {% if errors.password %}
+      <div class="error-message">{{ errors.password }}</div>
+      {% endif %}
 
       <label for="confirm-password">Confirm Password</label>
       <input
@@ -78,8 +64,10 @@
         id="confirm-password"
         name="confirm-password"
         placeholder="Confirm password"
-        required
       />
+      {% if errors.confirm_password %}
+      <div class="error-message">{{ errors.confirm_password }}</div>
+      {% endif %}
       <button type="submit">Signup</button>
     </form>
   </div>
