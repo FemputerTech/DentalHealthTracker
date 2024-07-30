@@ -3,7 +3,33 @@ Setting up test environment
 """
 import pytest
 from website import create_app
-from website.extensions import db
+from website.extensions import db, bcrypt
+from website.models import User
+from datetime import datetime
+
+
+user1 = {
+    "first-name": "Dwight",
+    "last-name": "Frye",
+    "email": "renfield@dracula.com",
+    "dob": "1899-02-22",
+    "tel": "9876543210",
+    "password": "ratsratsrats",
+    "confirm-password": "ratsratsrats"
+}
+
+
+user2 = {
+    "first-name": "Bela",
+    "last-name": "Lugosi",
+    "email": "vlad3@dracula.com",
+    "dob": "1882-10-20",
+    "tel": "1234567890",
+    "password": "iwanttosuckyourblood",
+    "confirm-password": "iwanttosuckyourblood"
+}
+
+
 
 @pytest.fixture()
 def app():
