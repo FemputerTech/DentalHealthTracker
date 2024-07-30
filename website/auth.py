@@ -59,17 +59,14 @@ def signup():
             
         if errors:    
             return render_template('signup.html', user=current_user, errors=errors)
-
        
-
-        hashed_password = bcrypt.generate_password_hash(password)
         new_user = User(
             first_name=first_name,
             last_name=last_name,
             email=email,
             dob = dob,
             tel = tel,
-            password = hashed_password
+            password = bcrypt.generate_password_hash(password).decode('utf-8')
         )
         db.session.add(new_user)
         db.session.commit()
