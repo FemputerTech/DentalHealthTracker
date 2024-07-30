@@ -37,10 +37,10 @@ def signup():
         # Check if user already exists
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
-            errors["email"] = "That email already exists. Please choose a different one."
+            errors["user"] = "That email already exists. Please choose a different one."
         
         try:
-            datetime.strptime(dob, "%Y-%m-%d")
+            dob = datetime.strptime(dob, "%Y-%m-%d").date()
         except ValueError:
             errors["dob"] = "Invalid date of birth format. Use YYYY-MM-DD."
 
@@ -60,8 +60,7 @@ def signup():
         if errors:    
             return render_template('signup.html', user=current_user, errors=errors)
 
-        # convert dob to date
-        dob = datetime.strptime(dob, "%Y-%m-%d").date()
+       
 
         hashed_password = bcrypt.generate_password_hash(password)
         new_user = User(
