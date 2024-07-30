@@ -77,6 +77,7 @@ def signup():
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
+    errors = {}
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
@@ -87,11 +88,14 @@ def login():
                 login_user(user, remember=True)
                 return redirect(url_for("dash.dashboard"))
             else:
-                print({"Password Login Error":"Incorrect password"})
+                errors["password"] = "Incorrect password."
         else:
-            print({"Email Login Error":"Email does not exists"})
+            errors["email"] = "Email does not exists."
 
-    return render_template('login.html', user=current_user)
+        if errors:
+            return render_template('login.html', user=current_user, errors=errors) 
+
+    return render_template('login.html', user=current_user, errors={})
 
 
 @auth.route("/logout")
