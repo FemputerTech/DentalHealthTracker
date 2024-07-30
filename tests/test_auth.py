@@ -1,28 +1,9 @@
+from flask import url_for
+# from flask_login import login_user
 from website.extensions import bcrypt, db
 from website.models import User
 from datetime import datetime
-
-
-user1 = {
-    "first-name": "Dwight",
-    "last-name": "Frye",
-    "email": "renfield@dracula.com",
-    "dob": "1899-02-22",
-    "tel": "9876543210",
-    "password": "ratsratsrats",
-    "confirm-password": "ratsratsrats"
-}
-
-
-user2 = {
-    "first-name": "Bela",
-    "last-name": "Lugosi",
-    "email": "vlad3@dracula.com",
-    "dob": "1882-10-20",
-    "tel": "1234567890",
-    "password": "iwanttosuckyourblood",
-    "confirm-password": "iwanttosuckyourblood"
-}
+from .conftest import user1, user2
 
 
 class TestSignup():
@@ -119,3 +100,54 @@ class TestSignup():
         response = client.post("/signup", data=user1)
         assert b'Passwords must match.' in response.data
         user1["confirm-password"] = user1_confirm_password
+
+
+class TestLogin():
+    def test_login_page(self, client):
+        response = client.get("/login")
+        assert response.status_code == 200
+
+    
+    def test_successful_login(self, client, app):
+        TestSignup().test_successful_signup(client, app)
+        response = client.post("/login", data={
+            "email": user1["email"],
+            "password": user1["password"]
+        })
+        assert response.status_code == 302
+        with app.app_context():
+            user = User.query.filter_by(email=user1["email"]).first()
+            assert user.email == user1["email"]
+
+    
+    def test_invalid_email(self, client, app):
+        TestSignup().test_successful_signup(client, app)
+        user1_email = user1["email"]
+        user1["email"] = "renfield"
+        response = client.post("/login", data={
+            "email": user1["email"],
+            "password": user1["password"]
+        })
+        assert b'Email does not exists.' in response.data
+        user1["email"] = user1_email
+    
+
+    def test_invalid_password(self, client, app):
+        TestSignup().test_successful_signup(client, app)
+        user1_password = user1["password"]
+        user1["password"] = "dracula"
+
+        response = client.post("/login", data={
+            "email": user1["email"],
+            "password": user1["password"]
+        })
+        assert b'Incorrect password.' in response.data
+        user1["password"] = user1_password
+
+
+class TestLogout():
+    def test_logout(self, client, app):
+        TestLogin().test_successful_login(client, app)
+        response = client.get(url_for("auth.logout"), follow_redirects=True)
+        assert response.status_code == 200
+        assert response.request.path == "/"
