@@ -1,5 +1,5 @@
-# Use Google Cloud SDK's container as the base image
-FROM google/cloud-sdk
+# Use a Python image as the base image
+FROM python:3.12-slim
 
 # Specify my e-mail address as the maintainer of the container image
 LABEL maintainer="mleicht@pdx.edu"
