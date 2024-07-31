@@ -16,6 +16,8 @@ API: [OpenAI](https://platform.openai.com/docs/quickstart)
 2. enable Compute Engine, Cloud Build, and Secret Manager
 3. visit IAM console and add secret manager to Compute Engine account
    - Role: `Secret Manager Secret Accessor`
+4. create a service account called dentaltracker and add the following role
+   - Role: `Storage Admin`
 
 ## Setup the secret API Key
 
@@ -38,7 +40,7 @@ API: [OpenAI](https://platform.openai.com/docs/quickstart)
 3. Check that the image was created in Artifact Registry
 4. To rebuild the image, just pull the latest repo and run the same function
 
-## Deploy to Google Cloud Run:
+## Deploy to Google Cloud Run
 
 1. Run the following command in Cloud Shell
 2. This will Deploy and add an Environment Variable for the secret api key
