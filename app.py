@@ -6,14 +6,51 @@ To run the application, execute this script.
 """
 from website import create_app
 from website.extensions import db
+from website.models import Dentist
 
 
 app = create_app()
+
+def seed_dentists():
+    if not Dentist.query.first():
+        dentists = [
+            Dentist(
+                first_name="Vlad",
+                last_name="Dracula",
+                email="vlad.dracula@teeth.com",
+                tel=5556667777,
+                clinic_address="123 Transylvania Lane, Castle Dracul, Romania 54321",
+                rating=4.9,
+                license_number='D12345'
+            ),
+            Dentist(
+                first_name="Freddy",
+                last_name="Krueger",
+                email="freddy.krueger@nightmare.com",
+                tel=5551234567,
+                clinic_address="1313 Elm Street, Suite 4, Springwood, OH 12345",
+                rating=3.5,
+                license_number='D23456'
+            ),
+            Dentist(
+                first_name="Michael",
+                last_name="Myers",
+                email="michael.myers@halloween.com",
+                tel=5559876543,
+                clinic_address="40 Years Road, Haddonfield, IL 54321",
+                rating=4,
+                license_number='D34567'
+            )
+        ]
+
+        db.session.bulk_save_objects(dentists)
+        db.session.commit()
 
 
 # Create database tables if they don't exist
 with app.app_context():
     db.create_all()
+    seed_dentists()
 
 
 # Run the application
