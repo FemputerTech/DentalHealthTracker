@@ -1,3 +1,11 @@
+"""
+User -> Chat (one-to-many) For every one user we can have many chats (ForeignKey: chat.user_id)
+User -> Appointment (one-to-many) For every one user we can have many appointments (ForeignKey: appointment.user_id)
+User -> DentalRecord (one-to-many) For every one user we can have many dental records (ForeignKey: dental_record.user_id)
+
+Dentist -> User (one-to-many) For every one dentist we can have many users (patients) (ForeignKey: user.dentist_id)
+Dentist -> Appointment (one-to-many) For every one dentist we can have many appointments (ForeignKey: appointment.dentist_id)
+"""
 from .extensions import db
 from flask_login import UserMixin
 import datetime
@@ -9,29 +17,62 @@ class User(db.Model, UserMixin):
     
     Attributes:
         id: Integer, primary key.
+        dentist_id: Integer, foreign key referencing Dentist.
         first_name: String, user's first name.
         last_name: String, user's last name.
         email: String, user's email, unique.
         dob: Date, user's date of birth.
         tel: String, user's telephone number.
         password: String, user's hashed password.
-        dentist_id: Integer, foreign key referencing Dentist.
         chats: Relationship to Chat, one-to-many.
         appointments: Relationship to Appointment, one-to-many.
         dental_records: Relationship to DentalRecord, one-to-many.
     """
     id = db.Column(db.Integer, primary_key=True)
+    dentist_id = db.Column(db.Integer, db.ForeignKey('dentist.id'), nullable=True)
     first_name = db.Column(db.String(40), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     dob = db.Column(db.Date, nullable=False)
     tel = db.Column(db.Integer, nullable=False)
     password = db.Column(db.String(80), nullable=False)
-    dentist_id = db.Column(db.Integer, db.ForeignKey('dentist.id'), nullable=True)
-    chats = db.relationship('Chat', backref='user')
+    chats = db.relationship('Chat', backref='user') # Relationship
     appointments = db.relationship('Appointment', backref='user') # Relationship
     dental_records = db.relationship('DentalRecord', backref='user') # Relationship
 
+
+class Dentist(db.Model):
+    """
+    Represents a dentist in the system.
+    
+    Attributes:
+        id: Integer, primary key.
+        first_name: String, dentist's first name.
+        last_name: String, dentist's last name.
+        email: String, dentist's email, unique.
+        tel: String, dentist's telephone number.
+        clinic_address: String, address of the clinic.
+        rating: Float, rating of the dentist.
+        license_number: String, dentist's license number.
+        patients: Relationship to User, one-to-many.
+        appointments: Relationship to Appointment, one-to-many.
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(40), nullable=False)
+    last_name = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False) 
+    tel = db.Column(db.Integer, nullable=False)
+    clinic_address = db.Column(db.String(255), nullable=True)
+    rating = db.Column(db.Float, nullable=True)
+    license_number = db.Column(db.String(50), nullable=True)
+
+    patients = db.relationship('User', backref='dentist') # Relationship
+    appointments = db.relationship('Appointment', backref='dentist') # Relationship
+
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+    
 
 class Chat(db.Model):
     """
@@ -87,38 +128,6 @@ class DentalRecord(db.Model):
     treatment_id = db.Column(db.Integer, db.ForeignKey('treatment.id'), nullable=False)
     record_date = db.Column(db.DateTime, nullable=False)
     dental_issue = db.Column(db.String(255), nullable=True)
-
-
-class Dentist(db.Model):
-    """
-    Represents a dentist in the system.
-    
-    Attributes:
-        id: Integer, primary key.
-        first_name: String, dentist's first name.
-        last_name: String, dentist's last name.
-        email: String, dentist's email, unique.
-        tel: String, dentist's telephone number.
-        clinic_address: String, address of the clinic.
-        rating: Float, rating of the dentist.
-        license_number: String, dentist's license number.
-        patients: Relationship to User, one-to-many.
-        appointments: Relationship to Appointment, one-to-many.
-    """
-    id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(40), nullable=False)
-    last_name = db.Column(db.String(80), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False) 
-    tel = db.Column(db.Integer, nullable=False)
-    clinic_address = db.Column(db.String(255), nullable=True)
-    rating = db.Column(db.Float, nullable=True)
-    license_number = db.Column(db.String(50), nullable=True)
-    patients = db.relationship('User', backref='dentist')
-    appointments = db.relationship('Appointment', backref='dentist')
-
-    @property
-    def full_name(self):
-        return f"{self.first_name} {self.last_name}"
 
 
 class Treatment(db.Model):
