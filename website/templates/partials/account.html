@@ -36,26 +36,25 @@
       <div class="form-group">
         <label for="email">Email:</label>
         <input id="email" name="email" value="{{user.email}}" readonly />
-        <button type="button" onclick="editUserInfo('email')">
-          <box-icon name="edit-alt"></box-icon>
-        </button>
       </div>
       <div class="form-group">
         <label for="tel">Phone:</label>
-        <input id="tel" name="tel" value="{{user.tel}}" readonly />
-        <button type="button" onclick="editUserInfo('tel')">
+        <input class="editable" id="tel" name="tel" value="{{user.tel}}" disabled />
+        <button class="edit-button" type="button" onclick="editUserInfo('tel')">
           <box-icon name="edit-alt"></box-icon>
         </button>
       </div>
       <div class="form-group">
         <label for="dentist">Primary Dentist:</label>
-        <input
-          id="dentist"
-          name="dentist"
-          value="{{user.dentist_id}}"
-          readonly
-        />
-        <button type="button" onclick="editUserInfo('dentist')">
+        <select class="editable" name="dentist_id" id="dentist" disabled>
+          <option value="" {% if not user.dentist_id %}selected{% endif %} disabled>Select a primary dentist</option>
+          {% for dentist in dentists %}
+              <option value="{{ dentist.id }}" {% if user.dentist_id == dentist.id %}selected{% endif %}>
+                  {{ dentist.full_name }}
+              </option>
+          {% endfor %}
+        </select>
+        <button class="edit-button" type="button" onclick="editUserInfo('dentist')">
           <box-icon name="edit-alt"></box-icon>
         </button>
       </div>
