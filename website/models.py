@@ -27,6 +27,26 @@ class Chat(db.Model):
 
     user = db.relationship('User', back_populates='chats')
 
+
+class Appointment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    appointment_date = db.Column(db.DateTime, nullable=False)
+    notes = db.Column(db.Text, nullable=True)
+    
+    user = db.relationship('User', back_populates='appointments')
+
+
+class DentalRecord(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    record_date = db.Column(db.DateTime, nullable=False)
+    dental_issue = db.Column(db.String(255), nullable=True)
+    treatment = db.Column(db.String(255), nullable=True)
+    
+    user = db.relationship('User', back_populates='dental_records')
+
+
 class Dentist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(40), nullable=False)
