@@ -18,7 +18,6 @@ class User(db.Model, UserMixin):
     chats = db.relationship('Chat', back_populates='user', cascade='all, delete-orphan')
     appointments = db.relationship('Appointment', back_populates='user')
     dental_records = db.relationship('DentalRecord', back_populates='user')
-    dentist = db.relationship('Dentist', backref='users')
 
 
 class Chat(db.Model):
@@ -65,11 +64,12 @@ class Dentist(db.Model):
     rating = db.Column(db.Float, nullable=True)
     license_number = db.Column(db.String(50), nullable=True)
 
+    # Relationship
+    patients = db.relationship('User', backref='dentist', lazy=True)
+
+
 
 class Treatment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text, nullable=True)
-    
-    # Relationship
-    dental_records = db.relationship('DentalRecord', backref='treatment', lazy=True)
