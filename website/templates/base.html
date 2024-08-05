@@ -34,6 +34,9 @@
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
+            <a class="nav-link" id="dashboard" href="/dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" id="logout" href="/logout">Logout</a>
           </li>
           {% else %}
@@ -78,6 +81,12 @@
               <a class="nav-link" href="/dashboard">
                 <box-icon name="calendar" color="var(--neutral-4)"></box-icon>
                 <span class="nav-label">Calendar</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="home" href="/">
+                <box-icon name="home-alt-2" color="var(--neutral-4)"></box-icon>
+                <span class="nav-label">Home</span>
               </a>
             </li>
           </ul>
