@@ -5,11 +5,25 @@ The application uses Flask to create a web interface and includes some modules:
 To run the application, execute this script.
 """
 from website import create_app
-from website.extensions import db
-from website.models import Dentist
+from website.extensions import db, bcrypt
+from website.models import User, Dentist
+from datetime import datetime
 
 
 app = create_app()
+
+def seed_demo_user():
+    if not User.query.first():
+        demo_user = User(
+            first_name="Hermione",
+            last_name="Granger",
+            email="hermione.granger@hogwarts.edu",
+            dob = datetime.strptime("1979-09-19", "%Y-%m-%d").date(),
+            tel = "5552221234",
+            password = bcrypt.generate_password_hash("arithmancy179").decode('utf-8')
+        )
+        db.session.add(demo_user)
+        db.session.commit()
 
 def seed_dentists():
     if not Dentist.query.first():
@@ -50,6 +64,7 @@ def seed_dentists():
 # Create database tables if they don't exist
 with app.app_context():
     db.create_all()
+    seed_demo_user()
     seed_dentists()
 
 
