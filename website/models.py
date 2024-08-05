@@ -67,6 +67,10 @@ class Dentist(db.Model):
     # Relationship
     patients = db.relationship('User', backref='dentist', lazy=True)
 
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class Treatment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
