@@ -63,6 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function editUserInfo(fieldId) {
   const field = document.getElementById(fieldId);
-  field.removeAttribute("readonly");
-  field.focus();
+  if (field) {
+    field.disabled = !field.disabled;
+    field.focus();
+  }
 }
