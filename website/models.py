@@ -11,11 +11,13 @@ class User(db.Model, UserMixin):
     dob = db.Column(db.Date, nullable=False)
     tel = db.Column(db.Integer, nullable=False)
     password = db.Column(db.String(80), nullable=False)
-    dentist_id = db.Column(db.Integer, nullable=True)
+    dentist_id = db.Column(db.Integer, db.ForeignKey('dentist.id'), nullable=True)  # Added ForeignKey
+
 
     chats = db.relationship('Chat', back_populates='user', cascade='all, delete-orphan')
     appointments = db.relationship('Appointment', back_populates='user')
     dental_records = db.relationship('DentalRecord', back_populates='user')
+    dentist = db.relationship('Dentist', backref='users')
 
 
 class Chat(db.Model):
