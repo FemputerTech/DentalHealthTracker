@@ -58,3 +58,11 @@ class Dentist(db.Model):
     license_number = db.Column(db.String(50), nullable=True)
 
     users = db.relationship('User', backref='dentist', lazy=True)
+
+
+class Treatment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text, nullable=True)
+    
+    dental_records = db.relationship('DentalRecord', backref='treatment', lazy=True)
