@@ -9,6 +9,7 @@ Dentist -> Appointment (one-to-many) For every one dentist we can have many appo
 from .extensions import db
 from flask_login import UserMixin
 import datetime
+import enum
 
 
 class User(db.Model, UserMixin):
@@ -130,15 +131,29 @@ class DentalRecord(db.Model):
     dental_issue = db.Column(db.String(255), nullable=True)
 
 
-class Services(db.Model):
+class ServiceType(enum.Enum):
+    diagnostic = "Diagnostic"
+    preventive = "Preventive"
+    restorative = "Restorative"
+    endodontics = "Endodontics"
+    periodontics = "Periodontics"
+    oral_surgery = "Oral Surgery"
+    anesthesia = "Anesthesia"
+    cosmetic = "Cosmetic"
+    miscellaneous = "Miscellaneous"
+
+
+class Service(db.Model):
     """
     Represents a dental services.
     
     Attributes:
         id: Integer, primary key.
+        proc_code: String, procedure code for the service.
         name: String, name of the service.
         description: Text, description of the service.
     """
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.Text, nullable=True)
+    proc_code = db.Column(db.String(10), unique=True, nullable=False)
+    service = db.Column(db.String(100), nullable=False)
+    type_of_service = db.Column(db.Enum(ServiceType), nullable=False)
