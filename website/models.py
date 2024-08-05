@@ -13,6 +13,9 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(80), nullable=False)
     dentist_id = db.Column(db.Integer, nullable=True)
 
+    chats = db.relationship('Chat', back_populates='user', cascade='all, delete-orphan')
+
+
 
 class Chat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -20,6 +23,8 @@ class Chat(db.Model):
     role = db.Column(db.String(10), nullable=False)  # 'user' or 'bot'
     content = db.Column(db.Text, nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.datetime.now())
+
+    user = db.relationship('User', back_populates='chats')
 
 
 class Dentist(db.Model):
