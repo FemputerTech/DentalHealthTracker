@@ -68,7 +68,6 @@ class Dentist(db.Model):
     patients = db.relationship('User', backref='dentist', lazy=True)
 
 
-
 class Treatment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
