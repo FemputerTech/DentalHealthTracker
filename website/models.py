@@ -130,7 +130,7 @@ class DentalRecord(db.Model):
     dental_issue = db.Column(db.String(255), nullable=True)
 
 
-class Treatment(db.Model):
+class Services(db.Model):
     """
     Represents a dental treatment.
     
