@@ -121,14 +121,20 @@ class DentalRecord(db.Model):
         id: Integer, primary key.
         user_id: Integer, foreign key referencing User.
         service_id: Integer, foreign key referencing Service.
-        record_date: DateTime, date of the dental record.
-        dental_issue: String, description of the dental issue.
+        date_of_service: Date, when the service was provided.
+        proc_code: String, code for the procedure.
+        service_description: String, description of the service.
+        diagnosis: String, diagnosis or condition noted.
+        treatment_notes: String, notes related to the treatment.
     """
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'), nullable=False)
-    record_date = db.Column(db.DateTime, nullable=False)
-    dental_issue = db.Column(db.String(255), nullable=True)
+    date_of_service = db.Column(db.Date, nullable=False)
+    proc_code = db.Column(db.String(10), nullable=False)
+    service = db.Column(db.String(255), nullable=False)
+    diagnosis = db.Column(db.String(255), nullable=True)
+    treatment_notes = db.Column(db.String(255), nullable=True)
 
 
 class ServiceType(enum.Enum):
@@ -155,5 +161,5 @@ class Service(db.Model):
     """
     id = db.Column(db.Integer, primary_key=True)
     proc_code = db.Column(db.String(10), unique=True, nullable=False)
-    service = db.Column(db.String(100), nullable=False)
+    service = db.Column(db.String(255), nullable=False)
     type_of_service = db.Column(db.Enum(ServiceType), nullable=False)
